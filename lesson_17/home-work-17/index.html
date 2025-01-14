@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <header class="border-bottom border-2">
+      <div class="header_row row align-items-center">
+        <div class="col col-md-2 col-xl-2 px-3">
+          <img class="img-fluid" src="assets/images/logo/logo.svg" alt="Logo">
+        </div>
+        <div class="col col-md-7 col-xl-7 d-none d-md-block">
+          <ul class="my-auto d-flex flex-nowrap gap-3 gap-xl-5 list-unstyled text-nowrap text-black">
+            <li><a class="text-black text-decoration-none" href="#">Product</a></li>
+            <li><a class="text-black text-decoration-none" href="#">Features</a></li>
+            <li><a class="text-black text-decoration-none" href="#">Pricing</a></li>
+            <li><a class="text-black text-decoration-none" href="#">Case studies</a></li>
+            <li><a class="text-black text-decoration-none" href="#">Resources</a></li>
+          </ul>
+        </div>
+        <div class="col col-md-3 d-flex flex-row-reverse gap-2">
+          <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <img class="navbar" src="assets/images/Hamburger.svg" alt="Hamburger">
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Product</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Case studies</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Resources</a>
+                </li>
+              </ul>
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-dark rounded-0" type="button">Log In</button>
+                <button class="btn btn-primary rounded-0 text-light" type="button">Try it free</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn__header btn btn-primary text-light d-none d-md-block">Try it free</button>
+          <button class="btn__header btn btn-outline-dark d-none d-md-block">Log in</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="accelerate d-xl-flex">
+        <div class="picture__accelerate container-fluid order-2 d-xl-flex align-items-xl-center">
+          <img class="d-block mx-auto w-100" src="assets/images/Header.svg" alt="Header photo">
+        </div>
+        <div class="container__accelerate text-center text-xl-start mx-auto order-1">
+          <h1 class="header__accelerate fw-semibold">Accelerate localization from code to delivery</h1>
+          <p class="text__accelerate py-2 py-md-4">
+            A localization and translation management platform for agile teams. Embrace automation, workflow transparency,
+            and fast project delivery.
+          </p>
+          <div class="d-flex justify-content-center justify-content-xl-start gap-3 py-md-3">
+            <button class="btn__accelerate btn btn-primary text-light">Try it free</button>
+            <button class="btn__accelerate btn btn-outline-dark">Log in</button>
+          </div>
+          <p class="trial__accelerate py-3">
+            Try all features for 14 days · No credit card required
+          </p>
+        </div>
+      </div>
+    </main>
+
+  <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

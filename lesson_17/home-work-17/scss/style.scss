@@ -1,0 +1,105 @@
+$primary: #FF6336;
+
+@import "../fonts/GraphikLC/stylesheet.css";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  font-family: "Graphik LCG", Arial, sans-serif;
+  font-size: 14px;
+}
+//Header
+header {
+  padding-inline: 15px;
+  min-width: 362px;
+}
+
+.header_row {
+  height: 98px;
+}
+
+.btn {
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-wrap: nowrap;
+}
+
+.btn__header {
+  height: 45px;
+}
+//Main
+
+//Accelerate
+
+.picture__accelerate {
+  padding: 60px 50px;
+  min-width: 362px;
+  max-width: 768px;
+}
+
+.container__accelerate {
+  min-width: 362px;
+  max-width: 600px;
+  padding-inline: 20px;
+}
+
+.trial__accelerate {
+  font-size: 12px;
+}
+
+.btn__accelerate {
+  width: 130px;
+  height: 60px;
+}
+
+@media screen and (min-width: 768px) {
+  //Accelerate
+  .container__accelerate {
+    min-width: 640px;
+    max-width: 800px;
+  }
+
+  .header__accelerate {
+    font-size: 48px;
+  }
+
+  .text__accelerate {
+    font-size: 20px;
+  }
+  .trial__accelerate {
+    font-size: 14px;
+  }
+  .btn__accelerate {
+    width: 160px;
+    height: 60px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  header {
+    padding-inline: 50px;
+  }
+  .btn__header {
+    width: 120px;
+    font-size: 14px;
+  }
+  .accelerate {
+    padding: 150px 70px 172px 70px;
+  }
+  .container__accelerate {
+    min-width: 552px;
+    padding-inline: 0;
+  }
+  .picture__accelerate {
+    padding: 0;
+  }
+  .header__accelerate {
+    width: 552px;
+    font-size: 65px;
+  }
+  .text__accelerate {
+    width: 471px;
+    font-size: 25px;
+  }
+}

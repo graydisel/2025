@@ -1,0 +1,19 @@
+{
+  "name": "home-work-16",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "scss:build": "sass scss:assets/css",
+    "scss:watch": "sass --watch scss:assets/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  },
+  "devDependencies": {
+    "sass": "^1.83.1"
+  }
+}
