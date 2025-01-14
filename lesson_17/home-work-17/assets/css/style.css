@@ -94,11 +94,11 @@
   --bs-tertiary-bg: #f8f9fa;
   --bs-tertiary-bg-rgb: 248, 249, 250;
   --bs-heading-color: inherit;
-  --bs-link-color: #FF6336;
-  --bs-link-color-rgb: 255, 99, 54;
+  --bs-link-color: black;
+  --bs-link-color-rgb: 0, 0, 0;
   --bs-link-decoration: underline;
-  --bs-link-hover-color: rgb(204, 79.2, 43.2);
-  --bs-link-hover-color-rgb: 204, 79, 43;
+  --bs-link-hover-color: black;
+  --bs-link-hover-color-rgb: 0, 0, 0;
   --bs-code-color: #d63384;
   --bs-highlight-color: #212529;
   --bs-highlight-bg: rgb(255, 242.6, 205.4);
@@ -3251,7 +3251,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #6c757d;
   --bs-btn-disabled-border-color: transparent;
   --bs-btn-box-shadow: 0 0 0 #000;
-  --bs-btn-focus-shadow-rgb: 217, 84, 46;
+  --bs-btn-focus-shadow-rgb: 38, 38, 38;
   text-decoration: underline;
 }
 .btn-link:focus-visible {
@@ -11892,8 +11892,7 @@ header {
 
 .container__accelerate {
   min-width: 362px;
-  max-width: 600px;
-  padding-inline: 20px;
+  max-width: 580px;
 }
 
 .trial__accelerate {
@@ -11914,9 +11913,30 @@ header {
   max-width: 150px;
 }
 
+.container__functions {
+  padding: 30px 20px;
+}
+
+.img__functions {
+  max-width: 362px;
+}
+
+.content__functions {
+  max-width: 580px;
+  margin-inline: auto;
+}
+
+.header__functions {
+  padding: 25px 0 15px 0;
+  margin-bottom: 0;
+}
+
 @media screen and (min-width: 768px) {
   h1, .h1 {
     font-size: 40px;
+  }
+  [class*=text__], .link__functions {
+    font-size: 20px;
   }
   .container__accelerate {
     min-width: 640px;
@@ -11925,9 +11945,6 @@ header {
   .header__accelerate {
     font-size: 44px;
   }
-  .text__accelerate {
-    font-size: 20px;
-  }
   .trial__accelerate {
     font-size: 14px;
   }
@@ -11935,6 +11952,19 @@ header {
     width: 160px;
     height: 60px;
     font-size: 16px;
+  }
+  .container__functions {
+    padding: 40px 30px;
+  }
+  .img__functions {
+    max-width: 632px;
+    padding: 0;
+  }
+  .content__functions {
+    max-width: 800px;
+  }
+  .header__functions {
+    padding: 35px 0;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -11966,6 +11996,14 @@ header {
   .header__companies {
     width: 720px;
     padding-bottom: 54px;
+  }
+  .container__functions {
+    padding: 90px 75px 160px 75px;
+    gap: 138px;
+  }
+  .content__functions {
+    max-width: 493px;
+    margin-inline: 0;
   }
 }
 
