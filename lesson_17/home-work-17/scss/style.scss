@@ -17,6 +17,7 @@ body {
 
 h1 {
   font-size: 20px;
+  font-weight: 600;
 }
 @import "header";
 
@@ -52,17 +53,21 @@ h1 {
   padding: 47px 20px;
 }
 
-
+.img__companies {
+  max-width: 150px;
+}
 
 @media screen and (min-width: 768px) {
+  h1 {
+    font-size: 40px;
+  }
   //Accelerate
   .container__accelerate {
     min-width: 640px;
     max-width: 800px;
   }
-
   .header__accelerate {
-    font-size: 48px;
+    font-size: 44px;
   }
 
   .text__accelerate {
@@ -79,6 +84,10 @@ h1 {
 }
 
 @media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 50px;
+  }
+
   .accelerate {
     padding: 150px 20px 172px 20px;
   }
@@ -97,5 +106,14 @@ h1 {
   .text__accelerate {
     width: 471px;
     font-size: 25px;
+  }
+
+  // Companies
+  .companies {
+    padding: 107px 75px 88px 75px;
+  }
+  .header__companies {
+    width: 720px;
+    padding-bottom: 54px;
   }
 }
