@@ -11850,6 +11850,17 @@ body {
   font-size: 14px;
 }
 
+.btn {
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-wrap: nowrap;
+}
+
+h1, .h1 {
+  font-size: 20px;
+}
+
 header {
   padding-inline: 15px;
   min-width: 362px;
@@ -11859,17 +11870,19 @@ header {
   height: 98px;
 }
 
-.btn {
-  border-radius: 0;
-  font-size: 14px;
-  font-weight: 600;
-  text-wrap: nowrap;
-}
-
 .btn__header {
   height: 45px;
 }
 
+@media screen and (min-width: 1200px) {
+  header {
+    padding-inline: 50px;
+  }
+  .btn__header {
+    width: 120px;
+    font-size: 14px;
+  }
+}
 .picture__accelerate {
   padding: 60px 50px;
   min-width: 362px;
@@ -11889,6 +11902,11 @@ header {
 .btn__accelerate {
   width: 130px;
   height: 60px;
+}
+
+.companies {
+  background-color: #FF9C7D;
+  padding: 47px 20px;
 }
 
 @media screen and (min-width: 768px) {
@@ -11912,15 +11930,8 @@ header {
   }
 }
 @media screen and (min-width: 1200px) {
-  header {
-    padding-inline: 50px;
-  }
-  .btn__header {
-    width: 120px;
-    font-size: 14px;
-  }
   .accelerate {
-    padding: 150px 70px 172px 70px;
+    padding: 150px 20px 172px 20px;
   }
   .container__accelerate {
     min-width: 552px;
@@ -11928,6 +11939,7 @@ header {
   }
   .picture__accelerate {
     padding: 0;
+    max-width: 738px;
   }
   .header__accelerate {
     width: 552px;

@@ -1,0 +1,23 @@
+//Header
+header {
+  padding-inline: 15px;
+  min-width: 362px;
+}
+
+.header_row {
+  height: 98px;
+}
+
+.btn__header {
+  height: 45px;
+}
+
+@media screen and (min-width: 1200px) {
+  header {
+    padding-inline: 50px;
+  }
+  .btn__header {
+    width: 120px;
+    font-size: 14px;
+  }
+}
