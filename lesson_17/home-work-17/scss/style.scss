@@ -20,20 +20,26 @@ h1 {
   font-size: 20px;
   font-weight: 600;
 }
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  padding-block: 10px;
+}
 @import "header";
 
 //Main
 
 //Accelerate
-
+.accelerate {
+  padding-inline: 20px;
+}
 .picture__accelerate {
-  padding: 60px 50px;
-  min-width: 362px;
+  padding: 60px 30px;
   max-width: 768px;
 }
 
 .container__accelerate {
-  min-width: 362px;
   max-width: 580px;
 }
 
@@ -77,15 +83,52 @@ h1 {
   margin-bottom: 0;
 }
 
+//Possibilities
+
+.possibilities {
+  background-color: #FFF8E4;
+  padding: 60px 20px;
+}
+
+.item__possibilities {
+  padding: 20px 0;
+}
+//Boost
+.carousel-inner {
+  padding: 40px 20px;
+  min-height: 600px;
+}
+//Quote
+.quote {
+  background-color: #C9E8F2;
+  padding: 60px 20px;
+}
+.container__quote {
+  max-width: 620px;
+}
+.img__quote {
+  max-width: 310px;
+}
+.caption__quote {
+  padding-block: 40px;
+}
+
+
 
 @media screen and (min-width: 768px) {
   h1 {
     font-size: 40px;
   }
+  h2 {
+    font-size: 26px;
+  }
   [class*="text__"], .link__functions {
     font-size: 20px;
   }
   //Accelerate
+  .accelerate {
+    padding-inline: 30px;
+  }
   .container__accelerate {
     min-width: 640px;
     max-width: 800px;
@@ -116,15 +159,49 @@ h1 {
   .header__functions {
     padding: 35px 0;
   }
+  //Possibilities
+  .possibilities {
+    padding-inline: 30px;
+  }
+  .item__possibilities {
+    padding: 40px 20px;
+  }
+  //Boost
+  .carousel-inner {
+    padding: 50px 30px;
+    min-height: 700px;
+  }
+  .carousel-item{
+    p {
+      font-size: 20px;
+    }
+  }
+  //Quote
+  .quote {
+    padding-inline: 30px;
+  }
+  .container__quote {
+    max-width: 800px;
+  }
+  .quote__text {
+    font-size: 20px;
+  }
+  .img__quote {
+    max-width: 620px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
   h1 {
     font-size: 50px;
   }
-
+  h2 {
+    padding-block: 28px;
+    margin-block: 0;
+  }
+  //Accelerate
   .accelerate {
-    padding: 150px 20px 172px 20px;
+    padding: 150px 40px 172px 40px;
   }
   .container__accelerate {
     min-width: 552px;
@@ -145,7 +222,7 @@ h1 {
 
   // Companies
   .companies {
-    padding: 107px 75px 88px 75px;
+    padding: 107px 60px 88px 60px;
   }
   .header__companies {
     width: 720px;
@@ -153,12 +230,59 @@ h1 {
   }
   //Functions
   .container__functions {
-    padding: 90px 75px 160px 75px;
+    padding: 90px 40px 160px 40px;
     gap: 138px
   }
   .content__functions {
     max-width: 493px;
     margin-inline: 0;
   }
-
+  //Possibilities
+  .possibilities {
+    padding: 96px 40px 94px 40px;
+  }
+  .item__possibilities {
+    padding: 25px 45px;
+  }
+  .text__possibilities {
+    font-size: 18px;
+  }
+  //Boost
+  .boost {
+    padding: 154px 40px 200px 40px;
+  }
+  .header__text__boost {
+    font-size: 30px;
+    padding-block: 48px;
+  }
+  .img__boost {
+    min-height: 201px;
+  }
+  .item__boost {
+    max-width: 410px;
+  }
+  //Quote
+  .quote {
+    padding: 60px 40px 105px 40px;
+  }
+  .container__quote {
+    max-width: none;
+    gap: 85px;
+  }
+  .quote__text {
+    max-width: 895px;
+    p {
+      font-size: 30px;
+      line-height: 40px;
+    }
+  }
+  .img__quote {
+    min-width: 310px;
+  }
+  .caption__quote {
+    padding-block: 10px;
+    p {
+      font-size: 15px;
+    }
+  }
 }
