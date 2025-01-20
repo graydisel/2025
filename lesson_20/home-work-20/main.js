@@ -105,25 +105,26 @@ console.log(evenFn(20)) // [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 console.log('#5')
 
 function weekFn(n) {
+    let result
    switch (n) {
         case 1:
-             n = 'Понеділок';
+             result = 'Понеділок';
             break;
-        case 2: n = 'Вівторок';
+        case 2: result = 'Вівторок';
                 break;
-        case 3: n = 'Середа';
+        case 3: result = 'Середа';
                 break;
-        case 4: n = 'Четвер';
+        case 4: result = 'Четвер';
                 break;
-        case 5: n = 'Пятниця';
+        case 5: result = 'Пятниця';
                 break;
-        case 6: n = 'Субота';
+        case 6: result = 'Субота';
                 break;
-        case 7: n = 'Неділя';
+        case 7: result = 'Неділя';
                 break;
-        default: n = null;
+        default: result = null;
     }
-    return n;
+    return result;
 }
 
 console.log(weekFn(1))   // 'Понеділок'
@@ -244,18 +245,12 @@ console.log(oddFn(20)) // [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
  */
 console.log('#8');
 function mainFunc(a, b, cb) {
-    if (cb === cbRandom) {
-        return cbRandom(a, b);
-    }
-    if (cb === cbPow) {
-        return cbPow(a, b);
-    }
-    if (cb === cbAdd) {
-        return cbAdd(a, b);
-    }
-    else {
-        return false
-    }
+    if (typeof cb !== 'function') {
+        return false;
+        }
+        else {
+            return cb (a, b);
+        }
 }
 
 /*
