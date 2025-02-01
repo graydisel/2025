@@ -10,36 +10,43 @@ a) Створити клас Людина.
   Методи:
     конструктор, який приймає два параметри: імʼя та стать.*/
 
-class Human {
-    constructor(name, gender) {
-        this.name = name;
-        this.gender = gender;
-    }
-}
+import {Human} from "./human.js";
+
 const andrew = new Human('Andrew', 'male');
 const natasha = new Human('Natasha', 'female');
+const ted = new Human('Ted', 'male');
+const mathew = new Human('Mathew', 'male');
+const eva = new Human('Eva', 'female');
  console.log(andrew);
  console.log(natasha);
+ console.log(ted);
+ console.log(mathew);
+ console.log(eva);
 /*b) Створити клас Квартира.
   Властивості:
     конструктор не потрібен;
     масив жителів, який при створенні пустий.
   Методи:
     додати жителя - метод повинен приймати екземпляр класу Людина, та додавати до масиву жителів.*/
-class Apartment {
-    residents = [];
-    addResident(name) {
-        this.residents.push(name);
-    }
-}
-const apartment228 = new Apartment();
-apartment228.addResident('Luke Skywalker');
-apartment228.addResident('Rick Deckard');
-console.log(apartment228);
+import {Apartment} from "./apartments.js";
+
 const apartment222 = new Apartment();
 apartment222.addResident(andrew);
 apartment222.addResident(natasha);
+
+const apartment228 = new Apartment();
+apartment228.addResident(ted);
+
+const apartment301 = new Apartment();
+apartment301.addResident(mathew);
+
+const apartment302 = new Apartment();
+apartment302.addResident(eva);
+
 console.log(apartment222);
+console.log(apartment228);
+console.log(apartment301);
+console.log(apartment302);
 /*
 c) Створити клас Будинок.
 
@@ -50,34 +57,14 @@ c) Створити клас Будинок.
     конструктор, який приймає один параметр: максимальну кількість квартир;
     додати квартиру - метод повинен приймати екземпляр класу Квартира, перевіряти, чи не буде кількість перевищувати максимальну кількість квартир, і якщо це так, додати квартиру, в іншому випадку виводить у консоль відповідне повідомлення.
 */
-class Block {
-    apartments = [];
-    constructor(maxApartments) {
-        this.maxApartments = maxApartments;
-    }
-    #number = 0;
-    addApartment(number) {
-        if (this.#number < this.maxApartments) {
-            this.apartments.push(number);
-            this.#number++;
-        }
-        else {
-            console.log('Sorry, you reached maximum amount of apartments');
-        }
-    }
-}
-const blockSix = new Block(5);
-blockSix.addApartment(102);
-blockSix.addApartment(103);
-blockSix.addApartment(202);
-blockSix.addApartment(203);
-blockSix.addApartment(302);
-console.log(blockSix);
-blockSix.addApartment(302);
+import {Block} from "./block.js";
 
-const blockNine = new Block(4);
+const blockNine = new Block(3);
 blockNine.addApartment(apartment222);
 blockNine.addApartment(apartment228);
+blockNine.addApartment(apartment301);
+blockNine.addApartment(apartment302);
+
 console.log(blockNine);
 /*
 d) В якості демонстраціїї створити:

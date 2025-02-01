@@ -10,13 +10,16 @@ console.log('#5. JavaScript homework example file')
  * якщо ні - то лічба триває
  */
 console.log('#1')
-let count = 0;
-const counter = function(n) {
-    if (n !== undefined) {
-        count = n;
-    }
-    return count++;
-}
+
+const counter = (function () {
+    let count = 0;
+    return function (n) {
+        if (n !== undefined) {
+            count = n;
+        }
+        return count++;
+    };
+})();
 
 console.log(counter()) // 0
 console.log(counter()) // 1
@@ -106,8 +109,7 @@ console.log(counterFactory.value()) // 201
 console.log('#4')
 const list = [12, 23, 100, 34, 56, 9, 233]
 const myMax = (arr) => {
-    let max = Math.max.apply(null, arr);
-    return max;
+    return Math.max.apply(null, arr);
 }
 
 console.log(myMax(list)); // 233
@@ -127,7 +129,7 @@ const myMul = (a, b) => {
  * Функція повертає результат обчислення.
  */
 
-const myDouble =  myMul.bind( undefined, 2);
+const myDouble =  myMul.bind( null, 2);
 
 console.log(myDouble(3)) // = myMul(2, 3) = 6
 console.log(myDouble(4)) // = myMul(2, 4) = 8
@@ -135,7 +137,7 @@ console.log(myDouble(5)) // = myMul(2, 5) = 10
 
 // Аналогічним чином створюємо функцію myTriple(n), яка потроює параметр, що приймає, повертаючи результат.
 
-const myTriple = myMul.bind (undefined, 3);
+const myTriple = myMul.bind (null, 3);
 
 console.log(myTriple(3)) // = myMul(3, 3) = 9
 console.log(myTriple(4)) // = myMul(3, 4) = 12
