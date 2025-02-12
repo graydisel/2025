@@ -46,12 +46,16 @@ console.log(createDomElement('span', 'This span has been added to the paragraph.
  */
 
 function setLocalStorageInfo(key, value, timeout) {
-  const item = localStorage.setItem(key, value);
+  if (key === undefined || value === undefined) {
+    console.log('Please, enter data in key and value')
+  }
+  const item = localStorage.setItem(key, JSON.stringify(value));
   if (timeout !== undefined) {
     setTimeout(() => {
       localStorage.removeItem(key);
-    }, timeout);
+    }, timeout * 1000);
   }
+  return item;
 }
 
 const userNames = ['Oleksii', 'Oleksandr', 'Anna', 'Dmytro'];
@@ -63,9 +67,9 @@ const person = {
 }
 
 // Демонстрація використання функції
-// setLocalStorageInfo('language', 'en');
-// setLocalStorageInfo('userNames', userNames, 30);
-// setLocalStorageInfo('user', person);
+setLocalStorageInfo('language', 'en');
+setLocalStorageInfo('userNames', userNames, 30);
+setLocalStorageInfo('user', person);
 
 /*
 * #3
@@ -81,13 +85,18 @@ const person = {
 */
 
 function getLocalStorageInfo(key) {
-  // code here
+  if (localStorage.getItem(key) === null) {
+    return console.log(undefined);
+  }
+  else {
+    return console.log(localStorage.getItem(key));
+  }
 }
 
-// getLocalStorageInfo('language'); // en
-// getLocalStorageInfo('userNames'); // ['Oleksii', 'Oleksandr', 'Anna', 'Dmytro']
-// getLocalStorageInfo('user'); // обʼєкт персони John Wick поданий вище по коду
-// getLocalStorageInfo('nonExistentVariable'); // undefined
+getLocalStorageInfo('language'); // en
+getLocalStorageInfo('userNames'); // ['Oleksii', 'Oleksandr', 'Anna', 'Dmytro']
+getLocalStorageInfo('user'); // обʼєкт персони John Wick поданий вище по коду
+getLocalStorageInfo('nonExistentVariable'); // undefined
 //
 
-// export { createDomElement, setLocalStorageInfo, getLocalStorageInfo }
+export { createDomElement, setLocalStorageInfo, getLocalStorageInfo }
