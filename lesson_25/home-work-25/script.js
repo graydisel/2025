@@ -17,14 +17,18 @@ console.log('#8. JavaScript homework example file')
  */
 
 function createDomElement(tagName, textContent, container) {
-  // code here
+  const element = document.createElement(tagName);
+  const text = document.createTextNode(textContent);
+  element.appendChild(text);
+  container.appendChild(element);
+  return element;
 }
 
 // Демонстрація використання функції
-// const container = document.body; // В якості прикладу використовуємо body як контейнер
-// const createdElement = createDomElement('p', 'This paragraph has been added to the specified container.', container);
-// console.log(createdElement);
-// console.log(createDomElement('span', 'This span has been added to the paragraph.', createdElement))
+const container = document.body; // В якості прикладу використовуємо body як контейнер
+const createdElement = createDomElement('p', 'This paragraph has been added to the specified container.', container);
+console.log(createdElement);
+console.log(createDomElement('span', 'This span has been added to the paragraph.', createdElement))
 
 /*
  * #2 Розробити функцію setLocalStorageInfo, яка встановлює LocalStorage змінну з корисною інформацією
@@ -42,7 +46,12 @@ function createDomElement(tagName, textContent, container) {
  */
 
 function setLocalStorageInfo(key, value, timeout) {
-  // code here
+  const item = localStorage.setItem(key, value);
+  if (timeout !== undefined) {
+    setTimeout(() => {
+      localStorage.removeItem(key);
+    }, timeout);
+  }
 }
 
 const userNames = ['Oleksii', 'Oleksandr', 'Anna', 'Dmytro'];
@@ -81,4 +90,4 @@ function getLocalStorageInfo(key) {
 // getLocalStorageInfo('nonExistentVariable'); // undefined
 //
 
-export { createDomElement, setLocalStorageInfo, getLocalStorageInfo }
+// export { createDomElement, setLocalStorageInfo, getLocalStorageInfo }
