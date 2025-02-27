@@ -1,38 +1,81 @@
 export class Slider {
     currentSlide = 0;
-    slideCount = 0;
     isSliding = false;
     playIntervalId;
-    playTime = 2;
+    playTime;
     touchStartX;
     touchSensitivity = 50;
 
 
-    constructor(images) {
-        if (!images || !images.length || !Array.isArray(images)) {
+    constructor(params) {
+        if (!params.images || !params.images.length || !Array.isArray(params.images)) {
             throw new Error('No images specified');
         }
-        this.images = images;
-        this.slideCount = images.length;
+        if (!params.sliderId) {
+            throw new Error('Slider ID required!');
+        }
 
-        this.slidesContainerElement = document.querySelector('#slider .slides');
-        this.indicatorsContainerElement = document.querySelector('#slider .indicators');
-        this.playElement = document.querySelector('#slider .play-btn');
+        const defaultOptions = {
+            sliderId: '',
+            images: [],
+            playTime: 3,
+            isIndicatorsHidden: false
+        }
 
-        this.generateImg();
-        this.generateIndicators();
-        this.refreshIndicators();
+        const options = {
+            ...defaultOptions,
+            ...params};
 
-        this.firstImageElement = document.querySelector('#slider .slides img');
+        this.sliderId = `#${options.sliderId}`;
+        this.images = options.images;
+        this.slideCount = options.images.length;
+        this.playTime = options.playTime;
+        this.isIndicatorsHidden = options.isIndicatorsHidden;
 
+        this.prepareElements();
         this.makeSubscriptions();
     }
 
+    prepareElements() {
+        this.slidesContainerElement = document.querySelector(`${this.sliderId} .slides`);
+        this.indicatorsContainerElement = document.querySelector(`${this.sliderId} .indicators`);
+        this.playElement = document.querySelector(`${this.sliderId} .play-btn`);
+
+        this.generateImg();
+        if (!this.isIndicatorsHidden) {
+            this.generateIndicators();
+        }
+
+        this.firstImageElement = document.querySelector(`${this.sliderId} .slides img`);
+    }
+
     makeSubscriptions() {
-        document.querySelector('#slider .controls .next').addEventListener('click', this.toNextClick.bind(this));
-        // document.querySelector('#slider .controls .prev').addEventListener('click', toPrevClick);
-        // this.indicatorsContainerElement.addEventListener('click', onIndicatorClick);
-        // document.querySelector('#slider .play-btn').addEventListener('click', playPauseSlides);
+        const nextArrow = document.querySelector(`${this.sliderId} .controls .next`);
+        if (nextArrow) {
+            nextArrow.addEventListener('click', this.toNextClick.bind(this));
+        }
+        const prevArrow = document.querySelector(`${this.sliderId} .controls .prev`);
+        if (prevArrow) {
+            prevArrow.addEventListener('click', this.toPrevClick.bind(this));
+        }
+        if (!this.isIndicatorsHidden) {
+            this.indicatorsContainerElement.addEventListener('click', event => {
+                this.onIndicatorClick(event);
+            });
+        }
+        if(this.playElement) {
+            this.playElement.addEventListener('click', this.playPauseSlides.bind(this));
+            document.body.addEventListener('keydown', event => {
+                this.sliderKeyboard(event);
+            });
+        }
+        this.slidesContainerElement.addEventListener('touchstart', (event) => {
+            this.touchStartX = event.touches[0].clientX;
+        });
+        this.slidesContainerElement.addEventListener('touchend', event =>  {
+            this.touchSliderMovement(event);
+        });
+
     }
 
     generateImg() {
@@ -58,11 +101,14 @@ export class Slider {
 
 
     refreshIndicators() {
+        if (this.isIndicatorsHidden) {
+            return;
+        }
         const activeIndicator = document.querySelector('#slider .active');
         if (activeIndicator) {
             activeIndicator.classList.remove('active');
         }
-        document.querySelector(`#slider button[data-img-number="${this.currentSlide}"]` ).classList.add('active');
+        document.querySelector(`${this.sliderId} button[data-img-number="${this.currentSlide}"]` ).classList.add('active');
     }
 
     toNextClick() {
@@ -70,8 +116,60 @@ export class Slider {
         if (this.currentSlide === this.slideCount) {
             this.currentSlide = 0;
         }
-        console.log(this.firstImageElement);
         this.slidesContainerElement.style.transform = `translate(-${this.currentSlide * this.firstImageElement.offsetWidth}px)`;
         this.refreshIndicators();
+    }
+
+    toPrevClick() {
+        this.currentSlide--;
+        if (this.currentSlide < 0) {
+            this.currentSlide = this.slideCount - 1;
+        }
+        this.slidesContainerElement.style.transform = `translate(-${this.currentSlide * this.firstImageElement.offsetWidth}px)`;
+        this.refreshIndicators();
+    }
+
+    onIndicatorClick(event) {
+        if (!event.target.classList.contains('indicator')) {
+            return;
+        }
+        this.currentSlide = event.target.dataset.imgNumber;
+        this.slidesContainerElement.style.transform = `translate(-${this.currentSlide * this.firstImageElement.offsetWidth}px)`;
+        this.refreshIndicators();
+    }
+
+    sliderKeyboard (event) {
+        if (event.key === 'ArrowRight') {
+            this.toNextClick()
+        }
+        if (event.key === 'ArrowLeft') {
+            this.toPrevClick()
+        }
+        if (event.key === ' ') {
+            this.playPauseSlides()
+        }
+    }
+
+    touchSliderMovement(event) {
+        if (event.changedTouches[0].clientX < this.touchStartX - this.touchSensitivity) {
+            this.toNextClick()
+        }
+        if (event.changedTouches[0].clientX > this.touchStartX + this.touchSensitivity) {
+            this.toPrevClick()
+        }
+    }
+
+    playPauseSlides() {
+        if(this.isSliding) {
+            this.playElement.innerHTML = '&#9654;';
+            clearInterval(this.playIntervalId);
+            this.playIntervalId = null;
+        }
+        else {
+            this.playElement.innerHTML = '&#10074;&#10074;';
+            this.playIntervalId = setInterval(() => this.toNextClick(), this.playTime * 1000);
+        }
+        this.isSliding = !this.isSliding;
+        this.playElement.classList.toggle('paused');
     }
 }
