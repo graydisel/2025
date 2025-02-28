@@ -12,8 +12,10 @@ This is a JavaScript-based image slider that allows you to display a set of imag
 2. Copy images in folder.
 3. Create main `*.js` file and import the Class **Slider** from `Slider.js` or use the example `main.js`.
 4. Create new class with parameters.
-   > [!IMPORTANT]
-   > The structure of the files should be strictly as per example!
+
+> [!IMPORTANT]
+> The structure of the files should be strictly as per example!
+
 ### Configuration options
 The `Slider` class accepts an object with the following parameters:
 1) sliderId - Type: String - The ID of the slider container (required).
