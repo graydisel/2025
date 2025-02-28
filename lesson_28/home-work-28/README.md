@@ -9,8 +9,11 @@ This is a JavaScript-based image slider that allows you to display a set of imag
 6) Swipe support for touch devices and touch sensitivity.
 ## How to use it.
 1. Copy the file `Slider.js` into your website folder and add HTML and CSS code as by example, provided in folder.
-2. Create main `*.js` file and import the Class **Slider** from `Slider.js` or use the example `main.js`.
-3. Create new class with parameters.
+2. Copy images in folder.
+3. Create main `*.js` file and import the Class **Slider** from `Slider.js` or use the example `main.js`.
+4. Create new class with parameters.
+   > [!IMPORTANT]
+   > The structure of the files should be strictly as per example!
 ### Configuration options
 The `Slider` class accepts an object with the following parameters:
 1) sliderId - Type: String - The ID of the slider container (required).
