@@ -1,5 +1,8 @@
 function ageClassification(num) {
-    return num < 0 ? null :
+    if (typeof num !== 'number' || Number.isNaN(num)) {
+        return null;
+    }
+    return num <= 0 ? null :
         num <= 24 ? 'Дитинство' :
             num <= 44 ? 'Молодість' :
                 num <= 65 ? 'Зрілість' :
