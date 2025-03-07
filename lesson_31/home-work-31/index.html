@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular Expressions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="weather" class="weather-block">
+    <form action="">
+        <div class="weather-input">
+            <label for="city-name">Name of city</label>
+            <input type="text" name="city-name" id="city-name" placeholder="Enter city name">
+            <button id="submit" type="button" class="weather-button">Submit</button>
+        </div>
+        <p id="loading" class="hidden">Loading, please wait...</p>
+        <div id="weather-information" class="hidden">
+            <h2>Weather information</h2>
+
+            <div id="icon"></div>
+
+            <h3>Temperature</h3>
+            <p id="temperature"></p>
+
+            <h3>Pressure</h3>
+            <p id="pressure"></p>
+
+            <h3>Description</h3>
+            <p id="description"></p>
+
+            <h3>Humidity</h3>
+            <p id="humidity"></p>
+
+            <h3>Wind Speed</h3>
+            <p id="wind-speed"></p>
+
+            <h3>Direction in degrees</h3>
+            <p id="wind-direction"></p>
+        </div>
+    </form>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>

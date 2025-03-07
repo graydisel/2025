@@ -10,7 +10,7 @@ This is a JavaScript-based image slider that allows you to display a set of imag
 ## How to use it.
 1. Copy the file `Slider.js` into your website folder and add HTML and CSS code as by example, provided in folder.
 2. Copy images in folder.
-3. Create main `*.js` file and import the Class **Slider** from `Slider.js` or use the example `main.js`.
+3. Create main `*.js` file and import the Class **Slider** from `Slider.js` or use the example `script.js`.
 4. Create new class with parameters.
 
 > [!IMPORTANT]
