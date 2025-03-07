@@ -1,3 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+
+}
+
 .hidden {
     display: none;
+}
+
+#weather-information {
+    font-family: Trebuchet MS, Helvetica, sans-serif;
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+    background:
+            linear-gradient(130deg, #3a8bcd, white),
+            linear-gradient(310deg, #3a8bcd, #035988)
+}
+
+.weather-header {
+    text-align: center;
+}
+
+.weather-main {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+#temperature {
+    font-family: Calibri, sans-serif;
+    text-align: center;
+    font-size: 40px;
+    color: #8e8e8e;
+}
+
+#city {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

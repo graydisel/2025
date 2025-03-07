@@ -17,6 +17,7 @@
 
 const submitElement = document.getElementById('submit');
 
+getWeatherData('lviv')
 submitElement.addEventListener('click', () => {
     const inputCity = document.getElementById('city-name').value;
     getWeatherData(inputCity);
@@ -48,7 +49,9 @@ async function getWeatherData(city) {
             });
             console.log(data);
             document.getElementById('weather-information').classList.remove('hidden');
-            document.getElementById('temperature').innerHTML = data.main.temp;
+            document.getElementById('weather-icon').src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
+            document.getElementById('temperature').innerHTML = data.main.temp + '&deg;C';
+            document.getElementById('city').innerHTML = data.name;
             document.getElementById('pressure').innerHTML = data.main.pressure;
             document.getElementById('humidity').innerHTML = data.main.humidity;
             document.getElementById('wind-speed').innerHTML = data.wind.speed;
