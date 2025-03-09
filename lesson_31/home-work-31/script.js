@@ -16,12 +16,19 @@
 // http://openweathermap.org/img/w/10d.png
 
 const submitElement = document.getElementById('submit');
+const accordionElement = [...document.getElementsByClassName('accordion')];
 
-getWeatherData('lviv')
+
 submitElement.addEventListener('click', () => {
     const inputCity = document.getElementById('city-name').value;
     getWeatherData(inputCity);
 });
+
+accordionElement.forEach((element) => {
+    element.addEventListener('click', (event) => {
+        accordion(event);
+    })
+})
 
 
 async function getWeatherData(city) {
@@ -47,7 +54,7 @@ async function getWeatherData(city) {
                 }
                 return res.json();
             });
-            console.log(data);
+
             document.getElementById('weather-information').classList.remove('hidden');
             document.getElementById('weather-icon').src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`
             document.getElementById('temperature').innerHTML = data.main.temp + '&deg;C';
@@ -55,7 +62,7 @@ async function getWeatherData(city) {
             document.getElementById('pressure').innerHTML = data.main.pressure;
             document.getElementById('humidity').innerHTML = data.main.humidity;
             document.getElementById('wind-speed').innerHTML = data.wind.speed;
-            document.getElementById('wind-direction').innerHTML = data.wind.deg;
+            document.getElementById('wind-direction').innerHTML = data.wind.deg + '&deg;';
 
         } catch (error) {
             console.log(error.message);
@@ -64,6 +71,17 @@ async function getWeatherData(city) {
         }
     }
 
+}
+
+function accordion(element) {
+    element.target.classList.toggle('active');
+
+    const panelElement = element.target.nextElementSibling;
+    if (panelElement.style.maxHeight) {
+        panelElement.style.maxHeight = null;
+    } else {
+        panelElement.style.maxHeight = panelElement.scrollHeight + "px";
+    }
 }
 
 
