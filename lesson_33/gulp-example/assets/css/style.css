@@ -1,0 +1,191 @@
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+
+  margin: 0;
+  padding: 0;
+
+  -webkit-transition: 0.5s;
+          transition: 0.5s;
+  -webkit-transform: rotate(10deg);
+      -ms-transform: rotate(10deg);
+          transform: rotate(10deg);
+
+  opacity: 1;
+
+  font-family: serif;
+  font-size: 12px;
+}
+
+h1 {
+  text-align: center;
+
+  color: green;
+
+  font-size: 3rem;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+
+  margin: 0;
+  padding: 0;
+
+  -webkit-transition: 0.5s;
+          transition: 0.5s;
+
+  opacity: 1;
+
+  font-family: serif;
+  font-size: 12px;
+}
+
+h1 > a {
+  text-align: center;
+
+  font-size: 3rem;
+}
+
+a {
+  text-decoration: none;
+
+  color: red;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
+  order: 1;
+
+  margin: 0;
+
+  -webkit-transition: 1s;
+          transition: 1s;
+
+  background-color: #ffffff;
+}
+body h1 {
+  color: red;
+}
+@media (min-width: 600px) {
+  .header {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 30px;
+  }
+  .header {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+}
+@media (min-width: 900px) {
+  .header {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+}
+@media (min-width: 1600px) {
+  .header h1 {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+}
+@media (max-width: 1900px) and (min-width: 1601px) {
+  .header h1 {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+  .header h1 {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+}
+@media (max-width: 1200px) and (min-width: 1001px) {
+  .header h1 {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+  .header h1 {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+}
+@media (max-width: 900px) and (min-width: 601px) {
+  .header h1 {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+  .header h1 {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .header {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+  .header {
+    text-align: center;
+
+    background-image: url("url");
+
+    font-size: 20px;
+  }
+}

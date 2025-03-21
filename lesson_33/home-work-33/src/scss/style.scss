@@ -1,0 +1,43 @@
+$elementsBackground: #e3d8d8;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #b3c18c;
+  padding: 10px 20px;
+  height: 100vh;
+}
+
+
+ul {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  list-style: none;
+
+  li {
+    background-color: $elementsBackground;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+
+main {
+  height: 80%;
+  background-color: $elementsBackground;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  background-color: $elementsBackground;
+  border-radius: 5px;
+}
