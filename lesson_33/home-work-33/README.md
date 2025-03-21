@@ -32,8 +32,14 @@ Make sure you have Node.js and npm installed.
 2. /assets    # Static files (main html, styles, images, fonts, etc.)  
    - ├── index.html # Main HTML file
    - ├── /css # CSS folder where collect min.css
-   - ├── /js # Folder for JavaScript files
-   /gulpfile.js      # Gulp configuration
-   /package.json     # Project dependencies
+   - ├── /js # Folder for JavaScript files  
+   
+3. /gulpfile.js      # Gulp configuration  
+4. /package.json     # Project dependencies
 
+## Live Demo
 
+🔗 GitHub Pages: https://graydisel.github.io/demo_gulp/index.html
+
+## Repository
+📌 GitHub Repository: https://github.com/graydisel/2025/tree/main/lesson_33/home-work-33
