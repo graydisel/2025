@@ -13,7 +13,7 @@ const PATH = {
     htmlSource: './*.html',
     htmlDest: './**/*.html',
     projectDest: './assets',
-    jsSource: './src/**/*.js',
+    jsSource: './assets/**/*.js',
 }
 
 const browserSync = require('browser-sync').create();
