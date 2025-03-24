@@ -1,5 +1,5 @@
 // test
-/* eslint-disable multiline-comment-style */
+/* eslint-disable multiline-comment-scss */
 /* eslint-disable no-var */
 /* eslint-disable no-unused-vars */
 let num = 10;

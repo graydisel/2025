@@ -11,7 +11,7 @@ const sortCSSmq = require('sort-css-media-queries')
 const pug = require('gulp-pug')
 
 const PATH = {
-  scssRootFile: './assets/scss/style.scss',
+  scssRootFile: './assets/scss/scss.scss',
   scssAllFiles: './assets/scss/**/*.scss',
   scssFolder: './assets/scss/',
   cssFolder: './assets/css/',
