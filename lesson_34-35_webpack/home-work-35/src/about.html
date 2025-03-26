@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+<header>
+  <%= require('html-loader!./elements/header.html').default %>
+  <%= require('html-loader!./elements/menu.html').default %>
+</header>
+
+<h1>About</h1>
+<p>
+  Welcome to Book Lovers Store, your ultimate destination for books that inspire, educate, and entertain. Whether you're
+  a passionate reader, a lifelong learner, or just looking for your next great read, we've got something for everyone.
+
+  Our carefully curated collection includes bestsellers, timeless classics, hidden gems, and the latest releases across
+  various genres—fiction, non-fiction, self-development, fantasy, mystery, and more. We believe in the power of books to
+  transport, transform, and enrich lives, and we’re here to help you find stories that resonate with you.
+
+  At Book Lovers Store, we prioritize quality service, fast delivery, and a seamless shopping experience. Our team is
+  dedicated to making book shopping easy and enjoyable, offering personalized recommendations and exclusive deals.
+
+  Thank you for choosing us as your go-to bookstore. Happy reading!
+</p>
+
+<footer>
+  <%= require('html-loader!./elements/footer.html').default %>
+</footer>
+</body>
+</html>

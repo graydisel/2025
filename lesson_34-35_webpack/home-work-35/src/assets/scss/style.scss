@@ -1,0 +1,44 @@
+@use "fonts";
+
+$text-color: #415d7c;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #a8c9ff;
+  font-family: "Ribeye", sans-serif;
+  color: $text-color;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  background-image: url("../images/logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  li {
+    a {
+      text-decoration: none;
+      color: #714d4d;
+      font-size: 16px;
+    }
+  }
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+}

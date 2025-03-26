@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link rel="icon" href="favicon.svg" type="image/svg">
+</head>
+
+<body>
+<header>
+  <%= require('html-loader!./elements/header.html').default %>
+  <%= require('html-loader!./elements/menu.html').default %>
+</header>
+
+<div id="root" class="container">
+
+</div>
+
+<footer>
+  <%= require('html-loader!./elements/footer.html').default %>
+</footer>
+</body>
+
+</html>
