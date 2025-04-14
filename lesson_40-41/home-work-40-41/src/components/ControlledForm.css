@@ -1,0 +1,9 @@
+.controlled-form {
+    border: black solid 2px;
+    border-radius: 5px;
+}
+
+.error {
+    margin: 5px;
+    color: red;
+}

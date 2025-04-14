@@ -15,9 +15,9 @@ function App() {
             <UncontrolledForm />
 
             <hr />
-            <h2>Завантаження даних</h2>
+            <h2>Data users</h2>
             <button onClick={() => setUserId((prev) => prev + 1)}>
-                Наступний користувач
+                Next user
             </button>
             <DataFetcher userId={userId} />
         </div>

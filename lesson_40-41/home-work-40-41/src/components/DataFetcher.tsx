@@ -27,7 +27,7 @@ function DataFetcher({ userId }: DataFetcherProps) {
                 );
                 setData(response.data);
             } catch (err) {
-                setError('Помилка при завантаженні користувача');
+                setError('Error in downloading data');
             } finally {
                 setLoading(false);
             }
@@ -36,13 +36,13 @@ function DataFetcher({ userId }: DataFetcherProps) {
         fetchUser();
     }, [userId]);
 
-    if (loading) return <p>Завантаження даних...</p>;
+    if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
     if (!data) return null;
 
     return (
         <div>
-            <p><strong>Ім’я:</strong> {data.name}</p>
+            <p><strong>Name:</strong> {data.name}</p>
             <p><strong>Email:</strong> {data.email}</p>
         </div>
     );
