@@ -6,7 +6,7 @@ import routes from "./routes.jsx";
 import Layout from './components/Layout.jsx'
 import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import NotFound from "./components/NotFound.jsx";
-import {CountryContext} from "./components/CountryContext.js";
+import {CountryContext} from "./components/CountryContext.jsx";
 
 const router = createBrowserRouter([
     {
@@ -24,13 +24,13 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-    const [count, setCount] = useState(0)
+    const [country, setCountry] = useState('-');
 
     return (
         <>
-            {/*<CountryContext.Provider value={value}>.*/}
-                <RouterProvider router={router}/>
-            {/*</CountryContext.Provider>*/}
+            <CountryContext.Provider value={{country, setCountry}}>.
+                <RouterProvider router={router} />
+            </CountryContext.Provider>
         </>
     )
 }

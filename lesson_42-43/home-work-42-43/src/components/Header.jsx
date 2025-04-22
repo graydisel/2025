@@ -1,11 +1,12 @@
-import {Link, NavLink} from 'react-router'
+import {NavLink} from 'react-router'
 import routes from '../routes.jsx'
-import {useState} from "react";
+import {useContext} from "react";
+import {CountryContext} from "./CountryContext.jsx";
 
 const Header = () => {
-    const [selectData, setSelectData] = useState('')
-    const HandleChange = (e) => {
-        setSelectData(e.target.value);
+    const { country, setCountry } = useContext(CountryContext);
+    const handleChange = (e) => {
+        setCountry(e.target.value);
         console.log(e.target.value);
     }
     return (
@@ -15,11 +16,11 @@ const Header = () => {
                 <h1>Welcome on "Beer Hut"</h1>
                 <div>
                     <label htmlFor="country">Choose the country</label>
-                    <select name="country" id="country" onChange={HandleChange}>
+                    <select name="country" id="country" value={country} onChange={handleChange}>
                         <option value="-" disabled={true}>---</option>
-                        <option value="ukraine">Ukraine</option>
-                        <option value="usa">USA</option>
-                        <option value="england">England</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="USA">USA</option>
+                        <option value="England">England</option>
                     </select>
                 </div>
             </div>
