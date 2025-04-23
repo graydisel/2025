@@ -1,6 +1,6 @@
 import "../css/Product.css"
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { RootState } from '../redux/types.ts';
 
 const Products = () => {
     document.title = 'Contact';
