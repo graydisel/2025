@@ -1,0 +1,15 @@
+.home-container {
+    padding: 10px 20px;
+    min-height: 400px;
+    background-color: #7f0000;
+    background-image: url("../assets/home-image.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: white;
+    font-size: 40px;
+    align-items: center;
+}

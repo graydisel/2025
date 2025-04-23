@@ -1,0 +1,17 @@
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #7f0000;
+    color: white;
+}
+
+.contact-picture {
+    max-width: 400px;
+}
+
+.picture {
+    width: 100%;
+    border-radius: 10px;
+}
