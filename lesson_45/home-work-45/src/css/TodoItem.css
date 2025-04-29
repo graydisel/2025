@@ -1,0 +1,51 @@
+.todo-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.check-box {
+    width: 10px;
+    height: 10px;
+    border-radius: 20%;
+    border: 1px solid #000;
+}
+
+.checked {
+    background-image: url("../assets/mark.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.not-checked {
+    background: none;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.not-completed {
+    text-decoration: none;
+}
+
+.delete-btn {
+    margin-left: 8px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    background-color: transparent;
+    background-image: url("../assets/trash.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: 0.5s ease-in-out;
+}
+
+.delete-btn:hover {
+    border-color: #000000;
+    cursor: pointer;
+}

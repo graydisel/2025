@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.list-container {
+    width: 600px;
+    min-height: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    gap: 10px;
+    background-image: url("../assets/list-background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.btn {
+    background: none;
+    border: 2px solid #3e2c2c;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.btn:hover {
+    background-color: rgba(73, 69, 69, 0.54);
+}
+
+.btn:disabled {
+    border-color: #b6b6b6;
+}
+
+.add-list {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.todo-list {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
