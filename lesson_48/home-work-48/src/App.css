@@ -1,0 +1,10 @@
+.app-header {
+  padding: 40px 10px;
+  text-align: center;
+  background-color: #800f0f;
+  color: white;
+  font-family: Impact, sans-serif;
+  font-size: 40px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
