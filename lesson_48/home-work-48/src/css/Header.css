@@ -1,0 +1,29 @@
+.app-header {
+    padding: 40px 10px;
+    text-align: center;
+    background-color: #800f0f;
+    color: white;
+    font-family: Impact, sans-serif;
+    font-size: 40px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.header-menu {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style-type: none;
+    font-weight: bold;
+}
+
+.header-menu li a {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+}
+
+.header-menu li a:hover {
+    color: #454545;
+}

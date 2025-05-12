@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {fetchArticles} from './newsAPI.ts'
-import {type Article} from "../../types/Article.interface.ts";
+import {type ArticleInterface} from "../../types/interfaces.ts";
 
 export interface newsState {
-    articles: Article[];
+    articles: ArticleInterface[];
     loading: boolean;
     currentId: string;
     error: string | null;
@@ -11,7 +11,7 @@ export interface newsState {
 
 
 export const initialState: newsState = {
-    articles: [] as Article[],
+    articles: [] as ArticleInterface[],
     loading: false,
     currentId: 'bbc-news',
     error: null,
@@ -19,7 +19,8 @@ export const initialState: newsState = {
 
 
 
-export const getArticles = createAsyncThunk('news/getArticles', async (sourceId: string) =>{
+export const getArticles = createAsyncThunk('news/getArticles', async (sourceId: string) => {
+    await new Promise(resolve => setTimeout(resolve, 1500));
     return await fetchArticles(sourceId);
 })
 

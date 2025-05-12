@@ -1,9 +1,9 @@
-export interface News {
+export interface NewsInterface {
     label: string;
     value: string;
 }
 
-export const newsJournals: News[] = [
+export const newsJournals: NewsInterface[] = [
     {label: 'ABC News', value: 'abc-news'},
     {label: 'BBC News', value: 'bbc-news'},
     {label: 'CNN News', value: 'cnn'},

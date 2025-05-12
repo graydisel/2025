@@ -1,0 +1,11 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Optima, sans-serif;
+    font-weight: lighter;
+}
+
+.home-image {
+    max-width: 650px;
+}

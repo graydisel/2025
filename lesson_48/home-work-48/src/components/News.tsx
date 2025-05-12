@@ -2,16 +2,16 @@ import {useDispatch, useSelector} from "react-redux";
 import type {AppDispatch} from "../redux/store.ts";
 import {getArticles, switchJournal} from "../redux/news/newsSlice.ts"
 import {loadingSelector, articlesSelector, errorSelector, journalsSelector} from "../redux/selectors.ts";
-import {type Article} from "../types/Article.interface.ts";
-import "../css/NewsList.css"
-import {Autocomplete, Stack, TextField} from "@mui/material";
-import {type News, newsJournals} from "./newsJournals.ts";
-import {useEffect} from "react";
+import {type ArticleInterface} from "../types/interfaces.ts";
+import "../css/News.css"
+import {Autocomplete, CircularProgress, Stack, TextField} from "@mui/material";
+import {type NewsInterface, newsJournals} from "./newsJournals.ts";
+import {type SyntheticEvent, useEffect} from "react";
 
 
-export const NewsList = () => {
+export const News = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const articles: Article[] = useSelector(articlesSelector);
+    const articles: ArticleInterface[] = useSelector(articlesSelector);
     const loading: boolean = useSelector(loadingSelector);
     const error = useSelector(errorSelector);
     const journals = useSelector(journalsSelector)
@@ -20,11 +20,11 @@ export const NewsList = () => {
         dispatch(getArticles(journals));
     }, [dispatch, journals]);
 
-    const handleJournalsChange = (e, journal: News | null) => {
+    const handleJournalsChange = (e: SyntheticEvent, journal: NewsInterface | null) => {
         if (journal) {
             dispatch(switchJournal(journal.value))
             dispatch(getArticles(journal.value))
-            console.log(journals)
+            console.log(journals, e)
         }
     }
 
@@ -42,7 +42,9 @@ export const NewsList = () => {
             </Stack>
         <div className={'articles-container'}>
             <h2 className={'articles-header'}>Articles</h2>
-            {loading && <p className={'loading'}>Loading...</p>}
+            <div className={'loading'}>
+                {loading && <CircularProgress color="inherit" />}
+            </div>
             {error && <p className={'error'}>Error occurred: {error}</p>}
             <ul className={'articles-list'}>
                 {!loading && Array.isArray(articles) && articles.map((article) => (

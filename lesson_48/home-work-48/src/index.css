@@ -7,4 +7,13 @@
 body {
   background: radial-gradient(circle at center, #716d6d, #ffffff);
   font-family: Optima, sans-serif;
+  height: 100vh;
 }
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
