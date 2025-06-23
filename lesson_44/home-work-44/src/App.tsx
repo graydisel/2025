@@ -1,6 +1,6 @@
 import './App.css'
 import './routes.tsx'
-import {createBrowserRouter, RouterProvider} from "react-router";
+import {createBrowserRouter, RouterProvider} from "react-routes";
 import routes from "./routes.tsx";
 import Layout from './components/Layout.tsx'
 import ErrorBoundary from "./components/ErrorBoundary.tsx";

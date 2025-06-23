@@ -1,4 +1,4 @@
-import {NavLink} from 'react-router'
+import {NavLink} from 'react-routes'
 import routes from '../routes.tsx'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../redux/types.ts'

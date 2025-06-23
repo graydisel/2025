@@ -1,5 +1,5 @@
 import routes from "../routes.tsx";
-import {NavLink} from "react-router";
+import {NavLink} from "react-routes";
 import '../css/Header.css'
 
 const Header = () => {
