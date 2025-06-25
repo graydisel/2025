@@ -5,15 +5,15 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.set('view engine', 'ejs');
-
-app.use(express.json());
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send('Hello on my page')
+    res.render('index');
 })
 
 app.get('/articles', (req, res) => {
-    const articles = getArticles();
+    const articlesData = getArticles();
+    res.render('articles', {articles: articlesData, title: 'Articles list'});
 
 })
 
@@ -21,14 +21,15 @@ app.get('/articles/:id', (req, res) => {
     const articleId = req.params.id;
     const article = getArticleById(articleId);
 
-    if (!article) {
-        res.status(404).send('No article.ejs found.');
-        return;
-    }
 
-    res.json(article);
+    if (article) {
+        res.render('article', {article: article, title: `${article.title} - ${article.author}`});
+    } else {
+        res.status(404).send('No article found.');
+    }
 })
 
 app.listen(PORT, () => {
     console.log('Listening on port ' + PORT);
+    console.log(`Open: http://localhost:${PORT}`);
 })

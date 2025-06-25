@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title><%= title %></title>
+    <link rel="stylesheet" href="/css/articles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
 </head>
 <body>
     <div>
-        <%- content %>
+        <h2 class="articles-header">Articles</h2>
+        <div class="articles-list">
+            <% articles.forEach(function(article) { %>
+                <div class="article-card">
+                    <h4><a href="/articles/<%= article.id %>"><%= article.title %></a></h4>
+                    <p>Author: <%= article.author %></p>
+                    <p>Date: <%= article.published_date %></p>
+                </div>
+            <% }); %>
+        </div>
     </div>
 
 </body>
