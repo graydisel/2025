@@ -1,0 +1,24 @@
+body {
+    background: #2a2e50;
+    color: white;
+}
+
+header {
+    background: #595eac;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    background-color: #545bbd;
+}
+
+main {
+    color: #ececec;
+}
+
+.form {
+    border: 2px solid #7b84dc;
+}

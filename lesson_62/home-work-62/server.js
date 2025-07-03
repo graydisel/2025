@@ -24,7 +24,7 @@ app.use(express.static('public'));
 function isAuthenticated(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
-        return res.status(401).send('Authentication token missing');
+        return res.status(401).render('error',{path: '', content: 'Authentication token missing'});
     }
 
     try {
@@ -32,15 +32,20 @@ function isAuthenticated(req, res, next) {
         const user = users.find(u => u.email === payload.email);
         if (!user) {
             res.clearCookie('token');
-            return res.status(401).send('User not found');
+            return res.status(401).render('error', {path: '', content: 'User not found'});
         }
         req.user = user;
         next();
     } catch (err) {
         res.clearCookie('token');
-        return res.status(401).send('Invalid or expired token');
+        return res.status(401).render('error', {path: '', content: 'Invalid or expired token'});
     }
 }
+
+app.use((req, res, next) => {
+    res.locals.theme = req.cookies.theme || 'light';
+    next();
+});
 
 // -----HTML views--------
 
@@ -48,31 +53,37 @@ app.get("/", (req, res) => {
     res.render("index",
         { title: 'Home',
             content: `<h1>Welcome to home page</h1>
-                      <p><a href="/signin">Sign In</a></p>
-                      <p><a href="/signup">Sign Up</a></p>
-                      <p><a href="/profile">Profile</a></p>
-                      ` } );
+                      <div class="menu">
+                          <p><a href="/signin">Sign In</a></p>
+                          <p><a href="/signup">Sign Up</a></p>
+                          <p><a href="/profile">Profile</a></p>
+                      </div>
+                      `,
+            form:'' } );
 });
 
 app.get("/signin", (req, res) => {
     res.render("index",
         { title: 'Sign In',
             content: `<h1>Sign in</h1>
-                    <form action="/signin" method="post">
-                      <label for="email">Email</label>
-                      <input type="email" name="email" id="email">
-                      <label for="password">Password</label>
-                      <input type="password" name="password" id="password">
-                      <button>Sing In</button>
-                    </form>
-                    <div><a href="/">Back</a></div>
-`});
+                      <div><a href="/">Back</a></div>`,
+                   form: `<form action="/signin" method="post" class="form">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email">
+                              <label for="password">Password</label>
+                              <input type="password" name="password" id="password">
+                              <button>Sign In</button>
+                          </form>
+        `}
+    );
 });
 
 app.get("/signup", (req, res) => {
     res.render("index", {title: 'Sign Up',
     content: `<h1>Sign Up</h1>
-                <form method="post" action="/signup">
+              <div><a href="/">Back</a></div>`,
+        form: `
+                <form method="post" action="/signup" class="form">
                   <label for="name">Write your name</label>
                   <input type="text" id="name" name="name">
                   <label for="email">Enter your email</label>
@@ -83,20 +94,42 @@ app.get("/signup", (req, res) => {
                   <input type="password" name="password" id="password">
                   <button>Register</button>
                 </form>
-                <div><a href="/">Back</a></div>`});
+                `});
 });
 
 app.get('/profile', isAuthenticated, (req, res) => {
     const user = req.user.username;
     res.render('index', {title: 'Profile',
     content: `<h1>Welcome on your profile, ${user}</h1>
+            <div class="menu">
               <p><a href="/logout">Logout</a></p>  
-`});
+              <p><a href="/">Back</a></p>
+            </div>`,
+    form: `<div class="form">
+                <h3>Choose the theme.</h3>
+                <p><a href="/lighttheme">Light Theme</a></p>
+                <p><a href="/darktheme">Dark Theme</a></p>
+           </div>`});
 })
+
+app.get('/lighttheme', (req, res) => {
+    res.cookie('theme', 'light', { maxAge: 900000, httpOnly: true });
+    res.redirect('/profile');
+});
+
+app.get('/darktheme', (req, res) => {
+    res.cookie('theme', 'dark', { maxAge: 900000, httpOnly: true });
+    res.redirect('/profile');
+});
+
 
 app.get('/logout', (req, res) => {
     res.clearCookie('token');
-    res.send('Logged out');
+    res.render('index', {
+        title: 'Logout',
+        content: `<h1>See you soon</h1>
+                  <p><a href="/">Back</a></p>`,
+        form: `<h3>Successfully logged out</h3>` });
 });
 
 //------Endpoint--------
@@ -104,43 +137,49 @@ app.get('/logout', (req, res) => {
 app.post("/signup", async (req, res) => {
     const { name, username, password, email } = req.body;
     if (!name || !username || !password || !email) {
-        return res.status(400).send('All fields are required to be filled in');
+        return res.status(400).render('error', {path: 'signup',content: 'All fields are required to be filled in'});
     }
 
     if (users.find(u => u.username === username)) {
-        return res.status(400).send('User already exists');
+        return res.status(400).render('error', {path: 'signup', content: 'User already exists'});
     }
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
     users.push({name, username, password, email, hash});
-    res.send('Sign up successfully');
+    res.render('index', {title: 'Sign Up',
+        content: `<h2>Signed up successfully, ${name}</h2>
+                  <p><a href="/">Back</a></p>
+    `,
+        form: `<h3>Signed up successfully</h3>` });
 });
 
 app.post("/signin", async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).send('All fields are required to be filled in');
+        return res.status(400).render('error', {path: 'signin',content: 'All fields are required to be filled in'});
     }
 
     const user = await users.find(u => u.email === email);
     if (!user) {
-        return res.status(400).send('Invalid email or password');
+        return res.status(400).render('error', {path: 'signin', content: 'Invalid email or password'});
     }
 
     const validation = await bcrypt.compare(password, user.hash);
     if (!validation) {
-        return res.status(400).send('Invalid email or password');
+        return res.status(400).render('error', {path: 'signin',content: 'Invalid email or password'});
     }
 
     const token = jwt.sign({email: user.email}, SECRET_KEY, {expiresIn: '1h'});
 
     res.cookie('token', token, { httpOnly: true, maxAge: 60 * 60 * 1000 });
-    res.json({
-        message: 'Login successful',
-    });
+    res.render('index', {title: 'Sign Up',
+        content: `<h1>Welcome, ${user.name}</h1>
+                  <p><a href="/">Back</a></p>
+    `,
+        form: `<h3>Signed in successfully</h3>`});
 })
 
 app.listen(PORT, () => {

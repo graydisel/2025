@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><%= title %></title>
+    <title>Error</title>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <% if (theme === 'light') { %>
         <link rel="stylesheet" href="/css/light.css">
@@ -11,12 +11,13 @@
     <% } %>
     <link rel="icon" type="image/x-icon" href="/favicon.svg">
 </head>
+<header>
+    <h1>Error</h1>
+    <p><a href="/<%= path %>">Back</a></p>
+</header>
 <body>
-    <header>
-        <%- content %>
-    </header>
-<main>
-    <%- form %>
-</main>
+    <div class="error-container">
+        <p><%- content %></p>
+    </div>
 </body>
 </html>
