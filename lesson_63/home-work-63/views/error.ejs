@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <% if (theme === 'light') { %>
+        <link rel="stylesheet" href="/css/light.css">
+    <% } else { %>
+        <link rel="stylesheet" href="/css/dark.css">
+    <% } %>
+    <link rel="icon" type="image/x-icon" href="/favicon.svg">
+</head>
+<header>
+    <h1>Error</h1>
+    <p><a href="/<%= path %>">Back</a></p>
+</header>
+<body>
+    <div class="error-container">
+        <p><%- content %></p>
+    </div>
+</body>
+</html>

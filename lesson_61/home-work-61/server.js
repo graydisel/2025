@@ -1,6 +1,11 @@
 import express from "express";
 import {getArticleById, getArticles} from "./services/articlesService.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const PORT = process.env.PORT || 3000;
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const app = express();
 
