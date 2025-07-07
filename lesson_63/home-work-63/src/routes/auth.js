@@ -1,10 +1,11 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import {User} from "../models/User.js";
+import passport from "passport";
 
-export const signUpRouter = express.Router();
+export const authRouter = express.Router();
 
-signUpRouter.get("/signup", (req, res) => {
+authRouter.get("/signup", (req, res) => {
     res.render("index", {
         title: 'Sign Up',
         content: `<h1>Sign Up</h1>
@@ -25,7 +26,7 @@ signUpRouter.get("/signup", (req, res) => {
     });
 });
 
-signUpRouter.post("/signup", async (req, res) => {
+authRouter.post("/signup", async (req, res) => {
     const {name, username, password, email} = req.body;
 
     try {
@@ -57,3 +58,53 @@ signUpRouter.post("/signup", async (req, res) => {
         res.status(500).render('error', { path: 'signup', content: 'Server error during registration.' });
     }
 });
+
+
+authRouter.get("/signin", (req, res) => {
+    res.render("index",
+        {
+            title: 'Sign In',
+            content: `<h1>Sign in</h1>
+                      <div><a href="/">Back</a></div>`,
+            form: `<form action="/signin" method="post" class="form">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email">
+                              <label for="password">Password</label>
+                              <input type="password" name="password" id="password">
+                              <button>Sign In</button>
+                          </form>
+        `
+        }
+    );
+});
+
+authRouter.post("/signin", async (req, res, next) => {
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+        return res.status(400).render('error', {path: 'signin', content: 'All fields are required to be filled in'});
+    }
+
+    passport.authenticate("local", (err, user) => {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.status(401).render('error', {path: 'signin', content: 'Wrong email or password'});
+        }
+
+        req.logIn(user, (err) => {
+            if (err) {
+                return next(err);
+            }
+            res.render('index', {
+                title: 'Sign In Successful',
+                content: `<h1>Welcome, ${user.username}</h1>
+                          <p>You have successfully logged in.</p>
+                          <p><a href="/">Go to Home Page</a></p>
+                `,
+                form: `<h3>Signed in successfully</h3>`
+            });
+        });
+    })(req, res, next);
+})
