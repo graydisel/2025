@@ -37,9 +37,16 @@ authRouter.post("/signup", async (req, res) => {
             });
         }
 
-        const existingUser = await User.findOne({username: username});
-        if (existingUser) {
+        const existingUserByName = await User.findOne({username: username});
+        if (existingUserByName) {
             return res.status(400).render('error', {path: 'signup', content: 'This user already exists'});
+        }
+        const existingUserByEmail = await User.findOne({email: email});
+        if (existingUserByEmail) {
+            return res.status(400).render('error', {
+                path: 'signup',
+                content: 'This email is already registered.'
+            });
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -55,6 +62,7 @@ authRouter.post("/signup", async (req, res) => {
             form: `<h3>Signed up successfully</h3>`
         });
     } catch (error) {
+        console.log(error);
         res.status(500).render('error', { path: 'signup', content: 'Server error during registration.' });
     }
 });
@@ -78,19 +86,19 @@ authRouter.get("/signin", (req, res) => {
     );
 });
 
-authRouter.post("/signin", async (req, res, next) => {
+authRouter.post("/signin", (req, res, next) => {
     const {email, password} = req.body;
 
     if (!email || !password) {
         return res.status(400).render('error', {path: 'signin', content: 'All fields are required to be filled in'});
     }
 
-    passport.authenticate("local", (err, user) => {
+    passport.authenticate("local", (err, user, info) => {
         if (err) {
             return next(err);
         }
         if (!user) {
-            return res.status(401).render('error', {path: 'signin', content: 'Wrong email or password'});
+            return res.status(401).render('error', {path: 'signin', content: info.message || 'Wrong email or password'});
         }
 
         req.logIn(user, (err) => {

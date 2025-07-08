@@ -1,21 +1,18 @@
 import express from "express";
-import { ObjectId } from 'mongodb'
 import {db, dbConnect} from './data/db.js';
-import {User} from './models/User.js'
-import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import passport from 'passport';
-import passportConfig from './config/passport';
+import {configurePassport} from './config/passport.js';
 import helmet from 'helmet'
 import {indexRouter} from "./routes/index.js";
-import {signInRouter} from "./routes/signin.js";
-import {signUpRouter} from "./routes/signup.js";
 import {profileRouter} from "./routes/profile.js";
 import {themeRouter} from "./routes/theme.js";
 import {logoutRouter} from "./routes/logout.js";
+import {authRouter} from "./routes/auth.js";
 import setThemeFromCookie from "./middleware/themeMiddle.js";
+
 
 
 dotenv.config();
@@ -26,7 +23,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const SECRET_KEY = process.env.SECRET_KEY;
 
-const usersData = db.collection('usersData');
 
 
 app.use(express.urlencoded({extended: true}));
@@ -51,11 +47,16 @@ app.use(helmet.contentSecurityPolicy({
     }
 }));
 
+app.use((req, res, next) => {
+    res.locals.theme = req.cookies.theme || 'light';
+    next();
+});
+
 //---------Passport---------
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(passportConfig(passport))
+configurePassport(passport);
 
 
 // -----Middleware----
@@ -65,17 +66,25 @@ app.use(setThemeFromCookie);
 //-------Routes--------
 
 app.use(indexRouter)
-app.use(signInRouter);
-app.use(signUpRouter);
+app.use(authRouter)
 app.use(profileRouter);
 app.use(themeRouter);
 app.use(logoutRouter);
 
+//--------Start Server-----------
 
+const startServer = async () => {
+    try {
+        await dbConnect();
 
+        app.listen(PORT, () => {
+            console.log(`Listening on port ${PORT}`);
+            console.log(`Open: http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error('Error starting server:', error);
+    }
+}
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-    console.log(`Open: http://localhost:${PORT}`);
-});
+startServer();
 
