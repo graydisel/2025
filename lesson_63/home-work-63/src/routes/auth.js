@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import {User} from "../models/User.js";
 import passport from "passport";
+import {logoutRouter} from "./logout.js";
 
 export const authRouter = express.Router();
 
@@ -116,3 +117,18 @@ authRouter.post("/signin", (req, res, next) => {
         });
     })(req, res, next);
 })
+
+authRouter.get('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+    });
+    res.clearCookie('theme');
+    res.render('index', {
+        title: 'Logout',
+        content: `<h1>See you soon</h1>
+                  <p><a href="/">Back</a></p>`,
+        form: `<h3>Successfully logged out</h3>`
+    });
+});
