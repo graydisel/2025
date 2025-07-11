@@ -3,6 +3,7 @@ export interface Book {
     title: string;
     author: string;
     genre: string;
+    cover: string;
     price: number;
     imageUrl: string;
     description: string;
