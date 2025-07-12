@@ -1,8 +1,9 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -11,14 +12,18 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
 
-.read-the-docs {
-  color: #888;
+header {
+  height: 100px;
 }
 
 main {
+  flex: 1;
+  height: fit-content;
   display: flex;
+  gap: 20px;
+}
+
+footer {
+  height: 50px;
 }

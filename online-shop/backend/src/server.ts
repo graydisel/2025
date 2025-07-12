@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import helmet from 'helmet'
+import {dbConnect} from "./data/db.js";
+import {Product} from "./models/Product.js";
 
 dotenv.config();
 
@@ -18,7 +20,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 app.use(session({
-    secret: "BookThief",
+    secret: SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     cookie: {secure: false}
@@ -35,13 +37,27 @@ app.use(helmet.contentSecurityPolicy({
 
 //----------Routes-----------
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
     res.send("Hello World!");
+})
+
+app.get("/product", (_req, res) => {
+        res.send('Successfully add to database');
 })
 
 //------------Server--------------
 
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-    console.log(`Open: http://localhost:${PORT}`);
-});
+const startServer = async () => {
+    try {
+        await dbConnect();
+
+        app.listen(PORT, () => {
+            console.log(`Listening on port ${PORT}`);
+            console.log(`Open: http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error('Error starting server:', error);
+    }
+}
+
+startServer();

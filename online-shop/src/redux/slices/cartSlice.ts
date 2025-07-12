@@ -1,24 +1,46 @@
 import type {Book} from '../../types/product';
-import {type CartActionTypes, CART_ACTIONS} from '../types/cartTypes';
+import type {CartState} from "../types/cartTypes.ts";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-export const addToCart = (book: Book): CartActionTypes => ({
-    type: CART_ACTIONS.ADD_TO_CART,
-    payload: book,
+const initialState: CartState = {
+    items: [],
+};
+
+const cartSlice = createSlice({
+    name: "cart",
+    initialState,
+    reducers: {
+        addToCart: (state, action: PayloadAction<Book>) => {
+            const bookToAdd = action.payload;
+            const existingItem = state.items.find(item => item.book.id === bookToAdd.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                state.items.push({ book: bookToAdd, quantity: 1 });
+            }
+        },
+        removeFromCart: (state, action: PayloadAction<string>) => {
+            state.items = state.items.filter(item => item.book.id !== action.payload);
+        },
+        updateCartItemQuantity: (state, action: PayloadAction<{ bookId: string; quantity: number }>) => {
+            const {bookId, quantity} = action.payload;
+            const itemToUpdate = state.items.find(item => item.book.id === bookId);
+
+            if (itemToUpdate) {
+                if (quantity <= 0) {
+                    state.items = state.items.filter(item => item.book.id !== bookId);
+                } else {
+                    itemToUpdate.quantity = quantity;
+                }
+            }
+        },
+        clearCart: (state) => {
+            state.items = [];
+        },
+    }
 });
 
-export const removeFromCart = (bookId: string): CartActionTypes => ({
-    type: CART_ACTIONS.REMOVE_FROM_CART,
-    payload: bookId,
-});
+export const { addToCart, removeFromCart, updateCartItemQuantity, clearCart } = cartSlice.actions;
+export default cartSlice.reducer;
 
-export const clearCart = (): CartActionTypes => ({
-    type: CART_ACTIONS.CLEAR_CART,
-});
-
-export const updateCartItemQuantity = (bookId: string, quantity: number): CartActionTypes => ({
-    type: CART_ACTIONS.UPDATE_CART_ITEM_QUANTITY,
-    payload: {
-        bookId,
-        quantity,
-    },
-});

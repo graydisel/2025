@@ -1,0 +1,15 @@
+.main-menu-container {
+    width: 100px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.main-menu {
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+}
