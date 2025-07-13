@@ -1,8 +1,8 @@
 import Home from "../../pages/Home.tsx";
 import About from "../../pages/About.tsx";
-import Books from "../../pages/Books.tsx";
 import Cart from "../../pages/Cart.tsx";
 import type {RouteInterface} from "../../types/common.ts";
+import Products from "../../pages/Products.tsx";
 
 const routes:RouteInterface[] = [
     {
@@ -18,10 +18,10 @@ const routes:RouteInterface[] = [
         label: 'About',
     },
     {
-        title: 'Books',
-        path: 'books',
-        element: <Books />,
-        label: 'Books'
+        title: 'Products',
+        path: 'products',
+        element: <Products />,
+        label: 'Products'
     },
     {
         title: 'Cart',

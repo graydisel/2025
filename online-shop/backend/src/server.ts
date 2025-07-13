@@ -4,14 +4,15 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import helmet from 'helmet'
 import {dbConnect} from "./data/db.js";
-import {Product} from "./models/Product.js";
+import {getFilteredBooks} from "./services/books.js";
+
 
 dotenv.config();
 
 const app = express();
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4004;
 const SECRET_KEY = process.env.SECRET_KEY;
 
 app.use(express.urlencoded({extended: true}));
@@ -32,17 +33,25 @@ app.use(helmet.contentSecurityPolicy({
         scriptSrc: ["'self'", "https://trustedscripts.example.com"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: null,
+        connectSrc: ["'self'", "http://localhost:3000", "http://localhost:4004"],
     }
 }));
 
 //----------Routes-----------
 
 app.get("/", (_req, res) => {
-    res.send("Hello World!");
+    console.log("GET /");
 })
 
-app.get("/product", (_req, res) => {
-        res.send('Successfully add to database');
+app.get("/products", async (req, res) => {
+    console.log('Received filters:', req.query);
+    try {
+        const filteredBooks = await getFilteredBooks(req.query);
+        res.json(filteredBooks);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        res.status(500).json({ message: 'Error fetching products', error: error.message });
+    }
 })
 
 //------------Server--------------
