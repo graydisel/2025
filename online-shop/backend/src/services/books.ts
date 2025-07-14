@@ -2,32 +2,26 @@ import {Product} from "../models/Product.ts";
 import type {ProductFilter} from "../../../src/types/product.js";
 
 export type PriceQuery = {
-    $gte: null | number,
-    $lte: null | number
+    $gte?: number,
+    $lte?: number
 }
 
 export type Query = {
-    genre: string | null,
-    price: null | PriceQuery,
-    $or: null | [{},{}]
+    genre?: string;
+    price?: PriceQuery;
+    $or?: Array<Record<string, unknown>>;
 }
 
 
 export async function getFilteredBooks(filters: ProductFilter) {
-    let query: Query = {
-        genre: null,
-        price: null,
-        $or: null
-    };
+    const query: Query = {};
 
-    if (filters.genre && filters.genre !== '' && filters.genre !== 'all') { // Учитываем пустую строку и "all" как отсутствие фильтра
+    if (filters.genre && filters.genre !== '' && filters.genre !== 'all') {
         query.genre = filters.genre;
     }
 
-    const priceQuery: PriceQuery = {
-        $gte: null,
-        $lte: null
-    };
+    const priceQuery: PriceQuery = {};
+
     if (filters.minPrice) {
         priceQuery.$gte = Number(filters.minPrice);
     }
@@ -48,5 +42,5 @@ export async function getFilteredBooks(filters: ProductFilter) {
 
     console.log('Mongoose Query Object:', query);
 
-    return await Product.find({query}).exec();
+    return await Product.find(query).exec();
 }

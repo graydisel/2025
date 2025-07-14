@@ -1,9 +1,10 @@
 #root {
-  padding: 2rem;
+  padding: 1rem 2rem 0 2rem;
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  background-color: #fff7db;
+  min-height: 100vh;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -18,12 +19,12 @@ header {
 }
 
 main {
-  flex: 1;
-  height: fit-content;
+  flex: 1 0 auto;
   display: flex;
   gap: 20px;
 }
 
 footer {
   height: 50px;
+  flex-shrink: 0;
 }

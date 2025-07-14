@@ -9,7 +9,7 @@ interface BookCardProps {
 
 const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
     return (
-        <Card sx={{ maxWidth: 345, margin: 2, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Card sx={{ maxWidth: 345, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <CardMedia
                 component="img"
                 height="140"

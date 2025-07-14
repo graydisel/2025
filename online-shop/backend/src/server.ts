@@ -40,7 +40,7 @@ app.use(helmet.contentSecurityPolicy({
 //----------Routes-----------
 
 app.get("/", (_req, res) => {
-    console.log("GET /");
+    res.send('Connected to base')
 })
 
 app.get("/products", async (req, res) => {

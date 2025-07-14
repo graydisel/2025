@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid';
 import type { SelectChangeEvent } from '@mui/material/Select';
 import BookCard from "../components/common/BookCard.tsx";
 import type {AppDispatch} from "../redux/store.ts";
+import {genres} from "../data/genres.ts";
 
 const Products: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -57,11 +58,10 @@ const Products: React.FC = () => {
         setLocalFilters({});
     };
 
-    const uniqueGenres = Array.from(new Set(products.map(book => book.genre)));
 
     if (loading) {
         return(
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 400 }}>
                 <CircularProgress />
             </Box>
         )
@@ -75,7 +75,7 @@ const Products: React.FC = () => {
     }
 
     return (
-        <Container sx={{ mt: 4 }}>
+        <Container>
             <Typography variant="h4" component="h1" gutterBottom>
                 Our books
             </Typography>
@@ -100,7 +100,7 @@ const Products: React.FC = () => {
                         <MenuItem value="">
                             <em>All</em>
                         </MenuItem>
-                        {uniqueGenres.map(genre => (
+                        {genres.map(genre => (
                             <MenuItem key={genre} value={genre}>{genre}</MenuItem>
                         ))}
                     </Select>

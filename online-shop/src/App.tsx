@@ -1,4 +1,4 @@
-import './App.css'
+import './css/App.css'
 import ErrorBoundary from "./pages/ErrorBoundary.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./pages/Layout.tsx";
