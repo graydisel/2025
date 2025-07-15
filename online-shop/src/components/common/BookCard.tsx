@@ -33,7 +33,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
             </CardContent>
             <CardActions>
                 <Button size="small" color="primary" onClick={() => onAddToCart(book)}>
-                    В корзину
+                    Add to Cart
                 </Button>
             </CardActions>
         </Card>

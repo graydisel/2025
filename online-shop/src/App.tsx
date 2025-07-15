@@ -6,6 +6,8 @@ import NotFound from "./pages/NotFound.tsx";
 import routes from "./components/layout/routes.tsx";
 import {Provider} from "react-redux";
 import {store} from "./redux/store.ts";
+import {ThemeProvider} from "@mui/material";
+import {mainTheme} from "./css/themes.ts";
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
 
   return (
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <ThemeProvider theme={mainTheme}>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </Provider>
   )
 }

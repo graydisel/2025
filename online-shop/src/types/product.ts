@@ -9,9 +9,13 @@ export interface Book {
     description: string;
 }
 
+export type SortOrder = 'asc' | 'desc' | undefined;
+
 export interface ProductFilter {
     genre?: string;
     minPrice?: number;
     maxPrice?: number;
     searchTerm?: string;
+    sortBy?: 'price' | 'title' | 'author' | undefined;
+    sortOrder?: SortOrder;
 }

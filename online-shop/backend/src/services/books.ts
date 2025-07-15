@@ -12,9 +12,9 @@ export type Query = {
     $or?: Array<Record<string, unknown>>;
 }
 
-
 export async function getFilteredBooks(filters: ProductFilter) {
     const query: Query = {};
+    const sort: { [key: string]: 1 | -1 } = {};
 
     if (filters.genre && filters.genre !== '' && filters.genre !== 'all') {
         query.genre = filters.genre;
@@ -33,14 +33,25 @@ export async function getFilteredBooks(filters: ProductFilter) {
     }
 
     if (filters.searchTerm) {
-        const searchTermRegex = new RegExp(filters.searchTerm, 'i');
+        const searchTermString = String(filters.searchTerm);
+        const searchTermRegex = new RegExp(searchTermString, 'i');
         query.$or = [
             { title: { $regex: searchTermRegex } },
             { author: { $regex: searchTermRegex } },
         ];
     }
 
-    console.log('Mongoose Query Object:', query);
+    if (filters.sortBy) {
+        const validSortByFields = ['price', 'title', 'author'];
+        if (validSortByFields.includes(filters.sortBy)) {
+            sort[filters.sortBy] = filters.sortOrder === 'desc' ? -1 : 1;
+        } else {
+            console.warn(`Invalid sortBy field received: ${filters.sortBy}`);
+        }
+    }
 
-    return await Product.find(query).exec();
+    console.log('Mongoose Query Object:', query);
+    console.log('Mongoose Sort Object:', sort);
+
+    return await Product.find(query).sort(sort).exec();
 }

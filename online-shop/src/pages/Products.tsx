@@ -28,24 +28,33 @@ const Products: React.FC = () => {
         dispatch(addToCart(book));
     };
 
-    const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const handleSelectChange = (event: SelectChangeEvent<string>, child?: React.ReactNode) => {
         const { name, value } = event.target;
 
-        setLocalFilters((prevFilters) => ({
-            ...prevFilters,
-            [name!]: value,
-        }));
+        handleFilterChange({
+            target: {
+                name: name,
+                value: value
+            }
+        } as React.ChangeEvent<HTMLSelectElement>);
     };
 
     const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | { name?: string; value: unknown }>) => {
         const target = event.target as HTMLInputElement | HTMLSelectElement;
         const { name, value } = target;
 
-        const parsedValue = (name === 'minPrice' || name === 'maxPrice') ? (value === '' ? undefined : Number(value)) : value;
-        setLocalFilters(prevFilters => ({
-            ...prevFilters,
-            [name!]: parsedValue,
-        }));
+        if (name === 'sortBy' || name === 'sortOrder') {
+            setLocalFilters(prevFilters => ({
+                ...prevFilters,
+                [name]: value === '' ? undefined : value
+            }));
+        } else {
+            const parsedValue = (name === 'minPrice' || name === 'maxPrice') ? (value === '' ? undefined : Number(value)) : value;
+            setLocalFilters(prevFilters => ({
+                ...prevFilters,
+                [name!]: parsedValue,
+            }));
+        }
     };
 
     const handleApplyFilters = () => {
@@ -123,6 +132,42 @@ const Products: React.FC = () => {
                     variant="outlined"
                     size="small"
                 />
+
+                <FormControl sx={{ minWidth: 150 }} size="small">
+                    <InputLabel>Sort By</InputLabel>
+                    <Select
+                        name="sortBy"
+                        value={localFilters.sortBy || ''}
+                        label="Sort By"
+                        onChange={handleSelectChange}
+                        variant={"standard"}
+                    >
+                        <MenuItem value="">
+                            <em>None</em>
+                        </MenuItem>
+                        <MenuItem value="price">Price</MenuItem>
+                        <MenuItem value="title">Title</MenuItem>
+                        <MenuItem value="author">Author</MenuItem>
+                    </Select>
+                </FormControl>
+
+                <FormControl sx={{ minWidth: 120 }} size="small">
+                    <InputLabel>Order</InputLabel>
+                    <Select
+                        name="sortOrder"
+                        value={localFilters.sortOrder || ''}
+                        label="Order"
+                        onChange={handleSelectChange}
+                        variant={"standard"}
+                    >
+                        <MenuItem value="">
+                            <em>Default</em>
+                        </MenuItem>
+                        <MenuItem value="asc">Ascending</MenuItem>
+                        <MenuItem value="desc">Descending</MenuItem>
+                    </Select>
+                </FormControl>
+
                 <Button variant="contained" onClick={handleApplyFilters}>
                     Apply Filters
                 </Button>
