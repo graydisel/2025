@@ -18,29 +18,13 @@ html, body {
   padding: 0;
 }
 
+body {
+  padding: 20px;
+  background-color: #fff3be;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-
-button:hover {
-  border-color: #e65100;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #e65100;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
