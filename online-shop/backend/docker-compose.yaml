@@ -1,0 +1,46 @@
+services:
+  online-shop-backend:
+    image: online-shop-backend:latest
+    build: .
+    ports:
+      - "5000:4004"
+    environment:
+      - MONGO_DB=mongodb://graydisel:gds12345@mongo:27017/online_shop?authSource=admin
+      - SECRET_KEY=BookThief
+      - PORT=4004
+    depends_on:
+      - mongo
+    networks:
+      - online-shop-network
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=graydisel
+      - MONGO_INITDB_ROOT_PASSWORD=gds12345
+    networks:
+      - online-shop-network
+
+  mongo-express:
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=graydisel
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=gds12345
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_BASICAUTH_USERNAME=graydisel
+      - ME_CONFIG_BASICAUTH_PASSWORD=gds12345
+    depends_on:
+      - mongo
+    networks:
+      - online-shop-network
+
+networks:
+  online-shop-network:

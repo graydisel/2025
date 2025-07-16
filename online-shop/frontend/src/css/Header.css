@@ -1,0 +1,21 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+}
+
+.header-logo {
+    max-width: 100px;
+}
+
+.header-logo-name {
+    min-width: 150px;
+}
+
+.header-image {
+    max-width: 300px;
+}

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 200" xmlns:bx="https://boxy-svg.com">
-  <text style="fill: rgb(51, 51, 51); font-family: Boldonse; font-size: 100px; white-space: pre;" x="87.743" y="180.652"><tspan x="10" y="100" style="text-decoration: underline overline solid color(srgb 0 0 0 / 0.8); font-size: 100px; word-spacing: 0px;">My BookStore</tspan></text>
-  <defs>
-    <style bx:fonts="Boldonse">@import url(https://fonts.googleapis.com/css2?family=Boldonse%3Aital%2Cwght%400%2C400&amp;display=swap);</style>
-  </defs>
-</svg>

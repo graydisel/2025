@@ -12,7 +12,9 @@ export async function dbConnect() {
             await mongoose.connect(MONGO_DB,
                 {dbName: DATABASE_NAME});
         }
-        console.log(`Mongoose DB Connected! to ${DATABASE_NAME} database`);
+        console.log(`Connected to database: ${mongoose.connection.name}`);
+        console.log(`Connection host: ${mongoose.connection.host}`);
+        console.log(`Connection port: ${mongoose.connection.port}`);
     } catch (error) {
         console.error('Error:', error);
     }

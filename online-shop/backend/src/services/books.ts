@@ -1,5 +1,5 @@
-import {Product} from "../models/Product.ts";
-import type {ProductFilter} from "../../../src/types/product.js";
+import {Product} from "../models/Product.js";
+import type {ProductFilter} from "../types/product.js";
 
 export type PriceQuery = {
     $gte?: number,

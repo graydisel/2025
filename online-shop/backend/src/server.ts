@@ -13,7 +13,11 @@ const app = express();
 
 
 const PORT = process.env.PORT || 4004;
-const SECRET_KEY = process.env.SECRET_KEY;
+const secretKeyEnv = process.env.SECRET_KEY;
+if (!secretKeyEnv) {
+    console.error('FATAL ERROR: SECRET_KEY is not defined in environment variables.');
+}
+const SECRET_KEY = secretKeyEnv as string;
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -48,9 +52,15 @@ app.get("/products", async (req, res) => {
     try {
         const filteredBooks = await getFilteredBooks(req.query);
         res.json(filteredBooks);
-    } catch (error) {
+    } catch (error: unknown) {
         console.error('Error fetching products:', error);
-        res.status(500).json({ message: 'Error fetching products', error: error.message });
+        let errorMessage = 'An unknown error occurred.';
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        } else if (typeof error === 'string') {
+            errorMessage = error;
+        }
+        res.status(500).json({ message: 'Error fetching products', error: errorMessage });
     }
 })
 
