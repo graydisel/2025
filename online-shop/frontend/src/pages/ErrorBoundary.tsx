@@ -7,7 +7,7 @@ const ErrorBoundary = () => {
 
     return (
         <div>
-            <h3>Some error happen. Please return to the main page.</h3>
+            <h3>Some error happen. Please return to the <a href="/">main</a> page.</h3>
         </div>
     )
 }

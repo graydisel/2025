@@ -17,5 +17,11 @@ header {
 }
 
 .header-image {
-    max-width: 300px;
+    width: 300px;
+}
+
+.authentication-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }

@@ -1,4 +1,4 @@
-import routes from "./routes.tsx";
+import {routes} from "./routes.tsx";
 import {NavLink} from "react-router-dom";
 import "../../css/Menu.css"
 

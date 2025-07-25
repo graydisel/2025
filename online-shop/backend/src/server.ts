@@ -4,7 +4,11 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import helmet from 'helmet'
 import {dbConnect} from "./data/db.js";
-import {getFilteredBooks} from "./services/books.js";
+import passport from "passport";
+import {configurePassport} from "./config/passport.js";
+import {indexRouter} from "./routes/index.js";
+import {productsRouter} from "./routes/products.js";
+import {authRouter} from "./routes/auth.js";
 
 
 dotenv.config();
@@ -41,28 +45,16 @@ app.use(helmet.contentSecurityPolicy({
     }
 }));
 
+//--------Passport----------------
+app.use(passport.initialize());
+app.use(passport.session());
+configurePassport(passport);
+
 //----------Routes-----------
 
-app.get("/", (_req, res) => {
-    res.send('Connected to base')
-})
-
-app.get("/products", async (req, res) => {
-    console.log('Received filters:', req.query);
-    try {
-        const filteredBooks = await getFilteredBooks(req.query);
-        res.json(filteredBooks);
-    } catch (error: unknown) {
-        console.error('Error fetching products:', error);
-        let errorMessage = 'An unknown error occurred.';
-        if (error instanceof Error) {
-            errorMessage = error.message;
-        } else if (typeof error === 'string') {
-            errorMessage = error;
-        }
-        res.status(500).json({ message: 'Error fetching products', error: errorMessage });
-    }
-})
+app.use(indexRouter);
+app.use(productsRouter);
+app.use(authRouter);
 
 //------------Server--------------
 

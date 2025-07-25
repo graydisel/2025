@@ -3,8 +3,11 @@ import About from "../../pages/About.tsx";
 import Cart from "../../pages/Cart.tsx";
 import type {RouteInterface} from "../../types/common.ts";
 import Products from "../../pages/Products.tsx";
+import SignUp from "../../pages/SignUp.tsx";
+import SignIn from "../../pages/SignIn.tsx";
+import Profile from "../../pages/Profile.tsx";
 
-const routes:RouteInterface[] = [
+export const routes:RouteInterface[] = [
     {
         title: 'Home',
         path: '',
@@ -29,5 +32,26 @@ const routes:RouteInterface[] = [
         element: <Cart />,
         label: 'Cart',
     },
+
 ];
-export default routes;
+
+export const authRoutes: RouteInterface[] = [
+    {
+        title: 'SignUp',
+        path: 'auth/signup',
+        element: <SignUp />,
+        label: 'SignUp',
+    },
+    {
+        title: 'SignIn',
+        path: 'auth/signin',
+        element: <SignIn />,
+        label: 'SignIn',
+    },
+    {
+        title: 'Profile',
+        path: 'profile',
+        element: <Profile />,
+        label: 'Profile',
+    },
+]

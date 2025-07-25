@@ -28,7 +28,7 @@ const Products: React.FC = () => {
         dispatch(addToCart(book));
     };
 
-    const handleSelectChange = (event: SelectChangeEvent<string>, child?: React.ReactNode) => {
+    const handleSelectChange = (event: SelectChangeEvent<string>) => {
         const { name, value } = event.target;
 
         handleFilterChange({
@@ -78,7 +78,7 @@ const Products: React.FC = () => {
     if (error) {
         return (
             <div>
-                Some error happened: {error}. Please return to the <a href="/Hillel/2025/online-shop/frontend/public">main</a> page
+                Some error happened: {error}. Please return to the <a href="/">main</a> page
             </div>
         )
     }
