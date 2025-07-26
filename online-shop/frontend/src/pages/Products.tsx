@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import type {RootState} from "../redux/reducers";
-import type {Book, ProductFilter} from "../types/product.ts";
+import type { ProductFilter} from "../types/product.ts";
 import {clearFilters, fetchProducts, setFilters} from "../redux/slices/productSlice.ts";
 import {addToCart} from "../redux/slices/cartSlice.ts";
 import { Container, Typography, CircularProgress, Box, TextField, Select, MenuItem, InputLabel, FormControl, Button} from '@mui/material';
@@ -10,6 +10,7 @@ import type { SelectChangeEvent } from '@mui/material/Select';
 import BookCard from "../components/common/BookCard.tsx";
 import type {AppDispatch} from "../redux/store.ts";
 import {genres} from "../data/genres.ts";
+
 
 const Products: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -24,8 +25,8 @@ const Products: React.FC = () => {
         setLocalFilters(filters);
     }, [filters]);
 
-    const handleAddToCart = (book: Book) => {
-        dispatch(addToCart(book));
+    const handleAddToCart = (bookId: string) => {
+        dispatch(addToCart({ bookId }));
     };
 
     const handleSelectChange = (event: SelectChangeEvent<string>) => {
@@ -179,7 +180,7 @@ const Products: React.FC = () => {
             <Grid container spacing={4} justifyContent="center">
                 {products.length > 0 ? (
                     products.map((book) => (
-                        <Grid  size={{xs: 12, sm: 6, md: 4, lg: 3}} key={book.id}>
+                        <Grid  size={{xs: 12, sm: 6, md: 4, lg: 3}} key={book._id}>
                             <BookCard book={book} onAddToCart={handleAddToCart} />
                         </Grid>
                     ))

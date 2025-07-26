@@ -4,7 +4,7 @@ import type {Book} from "../../types/product.ts";
 
 interface BookCardProps {
     book: Book;
-    onAddToCart: (book: Book) => void;
+    onAddToCart: (bookId: string) => void;
 }
 
 const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
@@ -32,7 +32,7 @@ const BookCard: React.FC<BookCardProps> = ({ book, onAddToCart }) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" color="primary" onClick={() => onAddToCart(book)}>
+                <Button size="small" color="primary" onClick={() => onAddToCart(book._id)}>
                     Add to Cart
                 </Button>
             </CardActions>

@@ -1,6 +1,5 @@
 import Home from "../../pages/Home.tsx";
 import About from "../../pages/About.tsx";
-import Cart from "../../pages/Cart.tsx";
 import type {RouteInterface} from "../../types/common.ts";
 import Products from "../../pages/Products.tsx";
 import SignUp from "../../pages/SignUp.tsx";
@@ -28,9 +27,9 @@ export const routes:RouteInterface[] = [
     },
     {
         title: 'Cart',
-        path: 'cart',
-        element: <Cart />,
-        label: 'Cart',
+        path: 'profile',
+        element: <Profile />,
+        label: '🛍️ Cart',
     },
 
 ];

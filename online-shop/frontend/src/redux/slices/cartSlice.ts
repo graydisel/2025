@@ -1,46 +1,90 @@
 import type {Book} from '../../types/product.ts';
 import type {CartState} from "../types/cartTypes.ts";
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, type PayloadAction} from '@reduxjs/toolkit';
+import type {RootState} from "../reducers";
+import api from "../../services/api.ts";
+
+export interface CartItem {
+    book: Book;
+    quantity: number;
+}
 
 const initialState: CartState = {
     items: [],
+    status: 'idle',
+    error: null,
 };
+
+export const fetchCartItems = createAsyncThunk<CartItem[], void, { state: RootState }>(
+    'cart/fetchCartItems',
+    async (_, { rejectWithValue }) => {
+        try {
+            const response = await api.get('/user/cart');
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data?.message || 'Failed to fetch cart.');
+        }
+    }
+);
+
+export const addToCart = createAsyncThunk<CartItem[], { bookId: string; quantity?: number }, { state: RootState }>(
+    'cart/addToCart',
+    async ({ bookId, quantity }, { rejectWithValue }) => {
+        try {
+            const response = await api.post('/user/cart', { bookId, quantity });
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data?.message || 'Failed to add item to cart.');
+        }
+    }
+);
+
+export const removeFromCart = createAsyncThunk<CartItem[], string, { state: RootState }>(
+    'cart/removeFromCart',
+    async (bookId, { rejectWithValue }) => {
+        try {
+            const response = await api.delete(`/user/cart/${bookId}`);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response?.data?.message || 'Failed to remove item from cart.');
+        }
+    }
+);
 
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addToCart: (state, action: PayloadAction<Book>) => {
-            const bookToAdd = action.payload;
-            const existingItem = state.items.find(item => item.book.id === bookToAdd.id);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                state.items.push({ book: bookToAdd, quantity: 1 });
-            }
-        },
-        removeFromCart: (state, action: PayloadAction<string>) => {
-            state.items = state.items.filter(item => item.book.id !== action.payload);
-        },
-        updateCartItemQuantity: (state, action: PayloadAction<{ bookId: string; quantity: number }>) => {
-            const {bookId, quantity} = action.payload;
-            const itemToUpdate = state.items.find(item => item.book.id === bookId);
-
-            if (itemToUpdate) {
-                if (quantity <= 0) {
-                    state.items = state.items.filter(item => item.book.id !== bookId);
-                } else {
-                    itemToUpdate.quantity = quantity;
-                }
-            }
-        },
         clearCart: (state) => {
             state.items = [];
-        },
+            state.status = 'idle';
+            state.error = null;
+        }
+    },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCartItems.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(fetchCartItems.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+                state.status = 'succeeded';
+                state.items = action.payload;
+            })
+            .addCase(fetchCartItems.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload as string;
+            })
+            .addCase(addToCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+                state.status = 'succeeded';
+                state.items = action.payload;
+            })
+            .addCase(removeFromCart.fulfilled, (state, action: PayloadAction<CartItem[]>) => {
+                state.status = 'succeeded';
+                state.items = action.payload;
+            });
     }
 });
 
-export const { addToCart, removeFromCart, updateCartItemQuantity, clearCart } = cartSlice.actions;
+export const { clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
