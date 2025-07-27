@@ -3,7 +3,7 @@ import ErrorBoundary from "./pages/ErrorBoundary.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./pages/Layout.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import {routes, authRoutes} from "./components/layout/routes.tsx";
+import {routes, authRoutes, adminRoutes} from "./components/layout/routes.tsx";
 import {Provider} from "react-redux";
 import {store} from "./redux/store.ts";
 import {ThemeProvider} from "@mui/material";
@@ -17,7 +17,7 @@ function App() {
       element: <Layout/>,
       errorElement: <ErrorBoundary/>,
       children: [
-        ...routes, ...authRoutes,
+        ...routes, ...authRoutes, ...adminRoutes,
         {
           path: '*',
           element: <NotFound/>

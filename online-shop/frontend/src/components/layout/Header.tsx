@@ -5,6 +5,7 @@ import {NavLink, useNavigate} from "react-router-dom";
 import api from "../../services/api.ts";
 import {logoutUser} from "../../redux/slices/authSlice.ts";
 import {Box, Button, Typography} from "@mui/material";
+import AdminMenuItem from "../AdminMenuItem.tsx";
 
 const Header = () => {
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -35,10 +36,13 @@ const Header = () => {
                     {isLoggedIn ? (
                         <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
                             <Typography>Hello, {user?.username || user?.name}!</Typography>
-                            <span><NavLink to="/profile" className={({ isActive }) => isActive ? "active-link" : ""}>
-                                <Button variant={"contained"} size={"small"}>Profile</Button>
-                            </NavLink></span>
-                            <span><Button onClick={handleLogout} variant={"outlined"} size={"small"}>Log out</Button></span>
+                            {isLoggedIn && user?.role === 'admin' && (
+                                <AdminMenuItem/>
+                            )}
+                            <NavLink to="/profile" className={({ isActive }) => isActive ? "active-link" : ""}>
+                                <Button variant={"outlined"} size={"small"}>Profile</Button>
+                            </NavLink>
+                            <Button onClick={handleLogout} variant={"contained"} size={"small"}>Log out</Button>
                         </Box>
                     ) : (
                         <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>

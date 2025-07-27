@@ -69,6 +69,7 @@ authRouter.post("/auth/signin", (req: Request, res: Response, next: NextFunction
                     name: user.name,
                     username: user.username,
                     email: user.email,
+                    role: user.role,
                 }
             });
         });

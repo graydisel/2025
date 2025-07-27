@@ -22,6 +22,11 @@ const UserSchema = new Schema({
             },
         },
     ],
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+    },
 })
 
 interface ICartItem {
@@ -35,6 +40,7 @@ export interface IUser extends Document {
     email: string;
     password: string;
     cartItems: ICartItem[];
+    role: 'user' | 'admin';
 }
 
 export const User = mongoose.model('User', UserSchema);

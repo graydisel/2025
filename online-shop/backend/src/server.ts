@@ -10,6 +10,7 @@ import {indexRouter} from "./routes/index.js";
 import {productsRouter} from "./routes/products.js";
 import {authRouter} from "./routes/auth.js";
 import {cartRouter} from "./routes/cart.js";
+import {adminRouter} from "./routes/admin.js";
 
 
 dotenv.config();
@@ -56,7 +57,8 @@ configurePassport(passport);
 app.use(indexRouter);
 app.use(productsRouter);
 app.use(authRouter);
-app.use(cartRouter)
+app.use(cartRouter);
+app.use(adminRouter);
 
 //------------Server--------------
 

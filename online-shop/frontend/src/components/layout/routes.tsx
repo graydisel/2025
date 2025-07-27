@@ -5,6 +5,9 @@ import Products from "../../pages/Products.tsx";
 import SignUp from "../../pages/SignUp.tsx";
 import SignIn from "../../pages/SignIn.tsx";
 import Profile from "../../pages/Profile.tsx";
+import AdminAddProduct from "../../pages/AdminAddProduct.tsx";
+import AdminManageProducts from "../../pages/AdminManageProducts.tsx";
+import AdminEditProduct from "../../pages/AdminEditProduct.tsx";
 
 export const routes:RouteInterface[] = [
     {
@@ -53,4 +56,25 @@ export const authRoutes: RouteInterface[] = [
         element: <Profile />,
         label: 'Profile',
     },
+];
+
+export const adminRoutes: RouteInterface[] = [
+    {
+        title: 'Add Product',
+        path: '/admin/add',
+        element: <AdminAddProduct />,
+        label: 'Add Product',
+    },
+    {
+        title: 'Manage Products',
+        path: '/admin/manage',
+        element: <AdminManageProducts />,
+        label: 'Manage Products',
+    },
+    {
+        title: 'Edit Product',
+        path: '/admin/edit/:id',
+        element: <AdminEditProduct/>,
+        label: 'Edit Product',
+    }
 ]
